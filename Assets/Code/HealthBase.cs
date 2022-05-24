@@ -1,48 +1,54 @@
-﻿//Author: João Azuaga
-
-using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using UnityEngine;
 
-namespace UnityIntro {
-	public abstract class HealthBase : MonoBehaviour {
-		private float health;
+public abstract class HealthBase : MonoBehaviour
+{
+    public float health = 10f;
+    public float damage = 1f;
 
-		private void Start() {
-			health = MaxHealth();
-			Debug.Log($"{gameObject.name} has {health} health");
+    private void Start()
+    {
+        health = MaxHealth();
+        Debug.Log($"{gameObject.name} has {health} health");
+    }
 
-		}
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            TakeDamage(10f);
+            Debug.Log($"{gameObject.name} has {health} health remaining");
+        }
+    }
 
-		private void Update() {
-			if(Input.GetKeyDown(KeyCode.Space)) {
-				TakeDamage(10f);
-				Debug.Log($"{gameObject.name} has {health} health remaining", gameObject);
-			}
-		}
+    protected abstract float MaxHealth();
 
-		protected abstract float MaxHealth();
-		protected abstract float Damage();
+    private void TakeDamage(float damage)
+    {
+        health -= damage;
+        if (health <= 0f)
+        {
+            OnDeath();
+            Debug.Log($"{gameObject.name} has died");
+        }
+    }
 
-		private void TakeDamage(float damage) {
-			if(damage < 0)
-				Debug.LogError($"Damage is negative", gameObject);
-			health -= damage;
-			if(health <= 0f) {
-				Destroy(gameObject);
-				Debug.Log($"{gameObject.name} has died");
-			}
-		}
+    protected virtual void OnDeath()
+    {
+        Destroy(gameObject);
+    }
 
-		private void OnCollisionEnter(Collision other) {
-			if(other.transform.TryGetComponent<Health>(out Health target)) {
-				TakeDamage(target.Damage());
-				Debug.Log($"{gameObject.name} has {health} health remaining");
-			}
-		}
+    private void OnCollisionEnter(Collision other)
+    {
+        if (other.transform.TryGetComponent<HealthBase>(out HealthBase target))
+        {
+            TakeDamage(target.damage);
+            if (health > 0f)
+            {
+                Debug.Log($"{gameObject.name} has {health} health remaining");
+            }
+        }
+    }
 
-	}
 }
