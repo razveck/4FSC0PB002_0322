@@ -4,30 +4,45 @@ using UnityEngine;
 
 public abstract class HealthBase : MonoBehaviour
 {
-    public float health = 10f;
+    public float maxHealth = 10f;
+    public float currentHealth = 10f;
     public float damage = 1f;
 
-    private void Start()
+    //example of inspector manipulation
+    [SerializeField]
+    [Range(0, 1)]
+    private float privateSerializedVar;
+
+    private float privateVar;
+
+    [HideInInspector]
+    public float publicVar;
+
+
+	private void Start()
     {
-        health = MaxHealth();
-        Debug.Log($"{gameObject.name} has {health} health");
+        currentHealth = maxHealth;
+        Debug.Log($"{gameObject.name} has {currentHealth} health");
     }
 
-    private void Update()
+	private void OnValidate() {
+		currentHealth = maxHealth;
+	}
+
+	private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
             TakeDamage(10f);
-            Debug.Log($"{gameObject.name} has {health} health remaining");
+            Debug.Log($"{gameObject.name} has {currentHealth} health remaining");
         }
     }
 
-    protected abstract float MaxHealth();
-
     private void TakeDamage(float damage)
     {
-        health -= damage;
-        if (health <= 0f)
+        currentHealth -= damage;
+        currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
+        if (currentHealth <= 0f)
         {
             OnDeath();
             Debug.Log($"{gameObject.name} has died");
@@ -44,11 +59,10 @@ public abstract class HealthBase : MonoBehaviour
         if (other.transform.TryGetComponent<HealthBase>(out HealthBase target))
         {
             TakeDamage(target.damage);
-            if (health > 0f)
+            if (currentHealth > 0f)
             {
-                Debug.Log($"{gameObject.name} has {health} health remaining");
+                Debug.Log($"{gameObject.name} has {currentHealth} health remaining");
             }
         }
     }
-
 }

@@ -4,9 +4,5 @@ using UnityEngine;
 
 public class EnemyHealth : HealthBase
 {
-    protected override float MaxHealth()
-    {
-        return health;
-    }
 
 }

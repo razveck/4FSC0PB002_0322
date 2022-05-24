@@ -6,12 +6,6 @@ using UnityEngine;
 public class PlayerHealth : HealthBase
 {
 
-    protected override float MaxHealth()
-    {
-
-        return health;
-    }
-
     protected override void OnDeath()
     {
 
