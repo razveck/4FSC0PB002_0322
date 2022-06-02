@@ -2,15 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyAttack : Attack
-{
-    public override void doAttack(Transform target)
-    {
-        RaycastHit rh;
-        Physics.SphereCast(transform.position, 3, Vector3.zero, out rh);
-        if(rh.transform == target){
-            Debug.Log("Boom");
-        }
-    }
-    
+namespace UnityIntro{
+
+public class EnemyAttack : AttackBase {
+
+	public override void DoAttack() {
+		var colliders = Physics.OverlapSphere(transform.position, _attackRange,_attackMask);
+		if(colliders.Length > 0){
+			Debug.Log($"Hit {colliders[0].gameObject.name}", colliders[0].gameObject);
+
+			if(colliders[0].TryGetComponent(out HealthBase health)){
+				health.TakeDamage(_damage);
+			}
+		}
+	}
+
+	public override bool ShouldAttack() {
+		return Physics.CheckSphere(transform.position, _attackRange,_attackMask);
+	}
+}
 }

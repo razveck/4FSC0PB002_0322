@@ -138,7 +138,8 @@ GameObject:
   - component: {fileID: 133818188}
   - component: {fileID: 133818187}
   - component: {fileID: 133818193}
-  m_Layer: 0
+  - component: {fileID: 133818194}
+  m_Layer: 7
   m_Name: Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -270,6 +271,23 @@ MonoBehaviour:
   damage: 1
   privateSerializedVar: 0
   publicVar: 0
+--- !u!114 &133818194
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 133818186}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f9bc7ef64987124c8e02b7a96796b41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _attackRange: 5
+  _attackMask:
+    serializedVersion: 2
+    m_Bits: 119
+  _damage: 50
 --- !u!1 &136959545
 GameObject:
   m_ObjectHideFlags: 0
@@ -472,7 +490,7 @@ GameObject:
   - component: {fileID: 963194228}
   - component: {fileID: 963194227}
   - component: {fileID: 963194226}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -560,7 +578,8 @@ GameObject:
   - component: {fileID: 969553725}
   - component: {fileID: 969553720}
   - component: {fileID: 969553726}
-  m_Layer: 0
+  - component: {fileID: 969553727}
+  m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -694,6 +713,23 @@ MonoBehaviour:
   damage: 1
   privateSerializedVar: 0.501
   publicVar: 91324880
+--- !u!114 &969553727
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 969553719}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc9c3b6acba05784c9819129e6aebd19, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _attackRange: 5
+  _attackMask:
+    serializedVersion: 2
+    m_Bits: 0
+  _damage: 1
 --- !u!1 &1566098829
 GameObject:
   m_ObjectHideFlags: 0
@@ -703,7 +739,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1566098830}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
