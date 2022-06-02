@@ -24,8 +24,7 @@ namespace UnityIntro {
 
 		//Option 2: base class calls the subclass in its Update
 		private void FixedUpdate() {
-			Vector3 movementInput = GetDirection();
-			Vector3 movementDirection = new Vector3(movementInput.x, 0f, movementInput.y);
+			Vector3 movementDirection = GetDirection();
 			movementDirection = Normalize(movementDirection);
 			
 			Rigidbody.MovePosition(Rigidbody.position + Speed * Time.fixedDeltaTime * movementDirection);

@@ -5,9 +5,10 @@ using UnityEngine;
 namespace UnityIntro {
 	public class PlayerMovement : MovementBase {
 		protected override Vector3 GetDirection() {
-			Vector2 movementInput;
+			Vector3 movementInput;
 			movementInput.x = Input.GetAxis("Horizontal");
-			movementInput.y = Input.GetAxis("Vertical");
+			movementInput.y = 0f;
+			movementInput.z = Input.GetAxis("Vertical");
 
 			return movementInput;
 		}
