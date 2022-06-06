@@ -44,15 +44,11 @@ namespace UnityIntro.Erik.FPS
             Vector3 right = transform.right;
             float speed = moveSpeed;
 
-            Vector3 adjDir = new Vector3(forward.x * dir.x + right.x * dir.y, 0, forward.z * dir.x + right.x * dir.y);
 
             Debug.DrawLine(transform.position, transform.position + forward, Color.blue, Time.fixedDeltaTime);
             Debug.DrawLine(transform.position, transform.position + right, Color.red, Time.fixedDeltaTime);
-            Debug.DrawLine(transform.position, transform.position + adjDir, Color.magenta, Time.fixedDeltaTime);
 
-            //rb.velocity = new Vector3(adjDir.x * speed, rb.velocity.y, adjDir.y * speed);
-            rb.AddForce(forward * speed * dir.y, ForceMode.Impulse);
-            rb.AddForce(right * speed * dir.x, ForceMode.Impulse);
+            rb.velocity = forward * speed * dir.y + right * speed * dir.x + new Vector3(0, rb.velocity.y, 0);
 
         }
 

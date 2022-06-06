@@ -45,7 +45,7 @@ namespace UnityIntro.Erik.FPS
         void Move(Vector2 dirDelta)
         {
             dirDelta *= cameraMoveSpeed * Time.deltaTime;
-            dirDelta.x *= -1;
+            dirDelta.y *= -1;
             if (yawRange.x < cameraPos.x + dirDelta.x &&
                yawRange.y > cameraPos.x + dirDelta.x)
             {
