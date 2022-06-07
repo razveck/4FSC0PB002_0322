@@ -23,19 +23,16 @@ public class InputManager : MonoBehaviour
         inputActions.Player.CameraMove.canceled += ctx => cameraDir = Vector2.zero;
         inputActions.Player.Jump.performed += _ => jumpFlag = true;
         inputActions.Player.Interact.performed += _ => interactFlag = true;
+        inputActions.Player.Shoot.performed += _ => attackFlag = true;
 
-        inputActions.Player.Sprint.performed += _ => isSprinting = true;
-        inputActions.Player.Sprint.canceled += _ => isSprinting = false;
-        inputActions.Player.Sneak.performed += _ => isSneaking = true;
-        inputActions.Player.Sneak.canceled += _ => isSneaking = false;
+
     }
 
     [ReadOnly] public Vector2 moveDir;
     [ReadOnly] public Vector2 cameraDir;
     [ReadOnly] public bool jumpFlag;
     [ReadOnly] public bool interactFlag;
-    [ReadOnly] public bool isSprinting;
-    [ReadOnly] public bool isSneaking;
+    [ReadOnly] public bool attackFlag;
     private void OnEnable() {
         inputActions.Enable();
     }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 using Shizounu.Library.Editor;
+using Unity.VisualScripting;
 
 namespace UnityIntro.Erik.FPS
 {
@@ -23,12 +24,14 @@ namespace UnityIntro.Erik.FPS
         [Header("Body Rotation")]
         public Vector2 rotationThreshold;
         public float rotationSpeed = 5;
+
         [Header("References")]
         public InputManager inputManager;
         public Transform pivot;
         public Transform root;
         [SerializeField, ReadOnly] private Vector2 cameraPos;
         [SerializeField, ReadOnly] private float time;
+        public Vector3 camForward => pivot.forward;
 
         private void Start()
         {
@@ -77,7 +80,6 @@ namespace UnityIntro.Erik.FPS
                 root.eulerAngles += new Vector3(0, rotationSpeed * Time.deltaTime, 0);
             }
         }
-
         void HeadBobbing()
         {
             if (!doHeadBobbing)
@@ -88,6 +90,10 @@ namespace UnityIntro.Erik.FPS
                 pivot.position += new Vector3(0, Mathf.Sin(time / frequency) * amplitude, 0);
                 time += Time.deltaTime;
             }
+        }
+    
+        private void OnDrawGizmos() {
+           Gizmos.DrawRay(pivot.position, pivot.forward); 
         }
     }
 }
