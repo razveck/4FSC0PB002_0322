@@ -83,7 +83,7 @@ namespace FPS_Richie
             GameObject currentBullet = Instantiate(_bullet, _shootFrom.position, Quaternion.LookRotation(direction.normalized), _activeBullets.transform);
 
             // set damage & apply force //
-            currentBullet.transform.GetComponent<Bullet>().damage = _projectileDamage;
+            currentBullet.transform.GetComponent<Bullet>().Damage = _projectileDamage;
             currentBullet.GetComponent<Rigidbody>().AddForce(direction.normalized * _velocity, ForceMode.Impulse);
 
             Destroy(currentBullet, _lifeTime);

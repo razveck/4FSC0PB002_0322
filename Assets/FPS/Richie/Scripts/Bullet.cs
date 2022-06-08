@@ -6,13 +6,13 @@ namespace FPS_Richie
 {
     public class Bullet : MonoBehaviour
     {
-        public float damage;
+        public float Damage;
 
         private void OnCollisionEnter(Collision other)
         {
             if (other.transform.TryGetComponent<Target>(out Target target))
             {
-                target.TakeDamage(damage);
+                target.TakeDamage(Damage);
             }
         }
     }
