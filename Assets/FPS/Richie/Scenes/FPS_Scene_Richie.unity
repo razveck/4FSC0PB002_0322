@@ -6316,6 +6316,7 @@ MonoBehaviour:
   _sensitivity: 15
   _moveSpeed: 6
   _jumpHeight: 6
+  _inAirControl: 10
   _whatIsGround:
     serializedVersion: 2
     m_Bits: 256
@@ -6333,9 +6334,9 @@ Rigidbody:
   m_AngularDrag: 0.05
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!136 &1939985914
 CapsuleCollider:
   m_ObjectHideFlags: 0

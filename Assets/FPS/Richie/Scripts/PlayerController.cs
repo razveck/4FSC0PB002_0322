@@ -18,6 +18,8 @@ namespace FPS_Richie
         [Header("Movement")]
         [SerializeField] private float _moveSpeed = 8f;
         [SerializeField] private float _jumpHeight = 10f;
+        [SerializeField] private float _inAirControl = 10f;
+        private bool _canDrift;
 
         [Header("Ground Check")]
         [SerializeField] private LayerMask _whatIsGround;
@@ -69,6 +71,20 @@ namespace FPS_Richie
             {
                 Vector3 input = (_input.y * _moveSpeed * transform.forward) + (_input.x * _moveSpeed * transform.right);
                 _rb.velocity = new Vector3(input.x, _rb.velocity.y, input.z);
+
+                // can drift if jumped while standing still //
+                if (_input == Vector2.zero)
+                {
+                    _canDrift = true;
+                }
+                else _canDrift = false;
+            }
+            else
+            {
+                if (!_canDrift) return;  
+
+                Vector3 input = (_input.y * _inAirControl * transform.forward) + (_input.x * _inAirControl * transform.right);
+                _rb.AddForce(input);
             }
         }
 
