@@ -85,9 +85,9 @@ namespace UnityIntro.Erik.FPS
             if (!doHeadBobbing)
                 return;
 
-            if (Mathf.Abs(inputManager.moveDir.y) > .5)
+            if (inputManager.moveDir.magnitude > .5f)
             {
-                pivot.position += new Vector3(0, Mathf.Sin(time / frequency) * amplitude, 0);
+                Camera.main.transform.position = pivot.position + new Vector3(0, Mathf.Sin(time * frequency) * amplitude, 0);
                 time += Time.deltaTime;
             }
         }

@@ -31,7 +31,7 @@ namespace UnityIntro.Erik.FPS
                 if(_Health > MaxHealth)
                     _Health = MaxHealth;
                 if(_Health <= 0)
-                    _Alive = false;
+                    Alive = false;
             }
         }
 

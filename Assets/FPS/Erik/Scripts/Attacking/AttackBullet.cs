@@ -16,6 +16,7 @@ namespace UnityIntro.Erik.FPS
             bullet.transform.forward = source.transform.forward;
             bullet.GetComponent<Bullet>().source = bulletPool;
             bullet.GetComponent<Bullet>().damage = Damage;
+            bullet.GetComponent<Bullet>().Initialize();
         }
         private void FixedUpdate() {
             if(InputManager.Instance.attackFlag){

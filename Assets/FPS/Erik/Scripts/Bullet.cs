@@ -12,8 +12,8 @@ namespace UnityIntro.Erik.FPS
         public float damage = 10;
         public float force = 250;
         public ObjectPool source;
-        private void OnEnable() {
-            GetComponent<Rigidbody>().AddForce(Vector3.forward * force);
+        public void Initialize() {
+            GetComponent<Rigidbody>().AddForce(transform.forward * force);
         }
         private void OnDisable() {
             GetComponent<Rigidbody>().velocity = Vector3.zero;

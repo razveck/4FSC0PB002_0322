@@ -64,7 +64,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 10
-  force: 250
+  force: 1000
   source: {fileID: 0}
 --- !u!65 &1675300080116235223
 BoxCollider:
