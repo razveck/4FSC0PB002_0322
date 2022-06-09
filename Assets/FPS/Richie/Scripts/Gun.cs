@@ -73,20 +73,24 @@ namespace FPS_Richie
             {
                 targetPoint = hit.point;
             }
-            else targetPoint = _camera.transform.forward * range;
+            else targetPoint = _camera.transform.position + _camera.transform.forward * range;
+
+            Debug.DrawLine(_shootFrom.position, targetPoint, Color.cyan, 10f);
 
             // calculate spread
             float x = Random.Range(-_spread, _spread);
             float y = Random.Range(-_spread, _spread);
             Vector3 direction = (targetPoint - _shootFrom.position) + new Vector3(x, y, 0f);
+            Debug.DrawLine(_shootFrom.position, _shootFrom.position + direction, Color.magenta, 10f);
 
-            GameObject currentBullet = Instantiate(_bullet, _shootFrom.position, Quaternion.LookRotation(direction.normalized), _activeBullets.transform);
+            GameObject currentBullet = Instantiate(_bullet, _shootFrom.position, Quaternion.identity, _activeBullets.transform);
+            currentBullet.transform.forward = direction.normalized;
 
             // set damage & apply force //
             currentBullet.transform.GetComponent<Bullet>().Damage = _projectileDamage;
             currentBullet.GetComponent<Rigidbody>().AddForce(direction.normalized * _velocity, ForceMode.Impulse);
 
-            Destroy(currentBullet, _lifeTime);
+            Destroy(currentBullet, Vector3.Distance(_shootFrom.position, targetPoint) / _velocity);
         }
 
         private void HitScan()
