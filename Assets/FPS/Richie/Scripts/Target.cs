@@ -17,7 +17,7 @@ namespace FPS_Richie
 
         private void Awake()
         {
-            _temp = Instantiate(_target, transform.position, Quaternion.identity);
+            _temp = Instantiate(_target, transform.position, Quaternion.identity, transform);
             _counter = _respawnTime;
             _currenthealth = _health;
         }
