@@ -392,7 +392,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 547065626}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 1c9778f2ffe0c994b8a166eb371bbccf, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.5
@@ -658,7 +658,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1763509854986274637, guid: 3a489f3661be8454a88b5bee49c97790, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.43
+      value: 2.07
       objectReference: {fileID: 0}
     - target: {fileID: 1763509854986274637, guid: 3a489f3661be8454a88b5bee49c97790, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1142,7 +1142,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1763509854986274637, guid: 3a489f3661be8454a88b5bee49c97790, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 15
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 1763509854986274637, guid: 3a489f3661be8454a88b5bee49c97790, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1150,7 +1150,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1763509854986274637, guid: 3a489f3661be8454a88b5bee49c97790, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -0.75
       objectReference: {fileID: 0}
     - target: {fileID: 1763509854986274637, guid: 3a489f3661be8454a88b5bee49c97790, type: 3}
       propertyPath: m_LocalRotation.w

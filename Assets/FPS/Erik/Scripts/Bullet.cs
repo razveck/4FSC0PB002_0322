@@ -23,7 +23,6 @@ namespace UnityIntro.Erik.FPS
             if(other.gameObject.TryGetComponent<HealthBase>(out HealthBase health)){
                 health.Health -= damage;
             }
-            Debug.Log("Returned", this.gameObject);
             source.returnElement(this.gameObject);
         }
     }
