@@ -7,8 +7,6 @@ using Unity.VisualScripting;
 
 namespace UnityIntro.Erik.FPS
 {
-
-
     public class CameraController : MonoBehaviour
     {
         [Header("Camera Movement")]
@@ -47,8 +45,11 @@ namespace UnityIntro.Erik.FPS
 
         void Move(Vector2 dirDelta)
         {
+            //CameraPos is used to track rotation of the camera
+
             dirDelta *= cameraMoveSpeed * Time.deltaTime;
             dirDelta.y *= -1;
+            //Check movement left and right for camera to see if it remains inside its bounds 
             if (yawRange.x < cameraPos.x + dirDelta.x &&
                yawRange.y > cameraPos.x + dirDelta.x)
             {
@@ -56,6 +57,7 @@ namespace UnityIntro.Erik.FPS
                 //pivot.Rotate(0, dirDelta.x,0, Space.World);
                 pivot.localEulerAngles += new Vector3(0, dirDelta.x, 0);
             }
+            //Checks up and down bounds for the camera
             if (pitchRange.x < cameraPos.y + dirDelta.y &&
                pitchRange.y > cameraPos.y + dirDelta.y)
             {
@@ -84,11 +86,12 @@ namespace UnityIntro.Erik.FPS
         {
             if (!doHeadBobbing)
                 return;
-
             if (inputManager.moveDir.magnitude > .5f)
             {
                 Camera.main.transform.position = pivot.position + new Vector3(0, Mathf.Sin(time * frequency) * amplitude, 0);
                 time += Time.deltaTime;
+                if(time > Mathf.PI * 2)
+                    time -= Mathf.PI * 2;
             }
         }
     

@@ -119,5 +119,33 @@ namespace UnityIntro.Erik.Platformer
             return Vector;
         }
         #endregion
+
+        #region Statics
+        public static CustomVector3 Up => new CustomVector3(0,1,0);
+        #endregion
+
+        #region rotation
+        public CustomVector3 RotateAroundY(float degrees){
+            x = (x * Mathf.Cos(degrees)) + (z * Mathf.Sin(degrees));
+            //y = y;
+            z = (-x * Mathf.Sin(degrees)) + (z * Mathf.Cos(degrees));
+            return this;
+        }
+        public CustomVector3 RotateAroundX(float degrees){
+            //x = x;
+            y = (y * Mathf.Cos(degrees)) - (z * Mathf.Sin(degrees));
+            z = (y * Mathf.Sin(degrees)) + (z * Mathf.Cos(degrees));
+            return this;
+        }
+        public CustomVector3 RotateAroundZ(float degrees){
+            x = (x * Mathf.Cos(degrees)) - (y * Mathf.Sin(degrees));
+            y = (x * Mathf.Sin(degrees)) + (y * Mathf.Cos(degrees));
+            //z = z;
+            return this;
+        }
+
+
+
+        #endregion
     }
 }

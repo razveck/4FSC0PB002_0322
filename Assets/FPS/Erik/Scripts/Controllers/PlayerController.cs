@@ -49,7 +49,6 @@ namespace UnityIntro.Erik.FPS
             Debug.DrawLine(transform.position, transform.position + right, Color.red, Time.fixedDeltaTime);
 
             rb.velocity = forward * speed * dir.y + right * speed * dir.x + new Vector3(0, rb.velocity.y, 0);
-
         }
 
         void Jump()
@@ -91,7 +90,7 @@ namespace UnityIntro.Erik.FPS
         bool isGrounded()
         {
             RaycastHit ray1;
-            Physics.Raycast(transform.position + new Vector3(0, -0.005f, 0), Vector3.down, out ray1);
+            Physics.Raycast(transform.position + new Vector3(0, 0.005f, 0), Vector3.down, out ray1);
             return ray1.distance < .05f;
         }
     }

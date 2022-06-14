@@ -33,6 +33,7 @@ public class InputManager : MonoBehaviour
     [ReadOnly] public bool jumpFlag;
     [ReadOnly] public bool interactFlag;
     [ReadOnly] public bool attackFlag;
+    
     private void OnEnable() {
         inputActions.Enable();
     }
