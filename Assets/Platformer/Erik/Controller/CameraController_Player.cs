@@ -38,7 +38,7 @@ namespace UnityIntro.Erik.Platformer
                verticalBounds.y > cameraPosition.x + dirDelta.x)
             {
                 cameraPosition.x += dirDelta.x;
-                ((CustomVector3)playerCamera.forward).RotateAroundY(dirDelta.x);
+                playerCamera.forward = (Vector3)((CustomVector3)playerCamera.forward).RotateAroundY(dirDelta.x);
             }
 
             //Checks up and down bounds for the camera
@@ -47,7 +47,7 @@ namespace UnityIntro.Erik.Platformer
             {
 
                 cameraPosition.y += dirDelta.y;
-                ((CustomVector3)playerCamera.forward).RotateAroundX(dirDelta.y);
+                playerCamera.forward = (Vector3)((CustomVector3)playerCamera.forward).RotateAroundX(dirDelta.y);
             }
             Mathf.Clamp(cameraPosition.x, verticalBounds.x, verticalBounds.y);
             Mathf.Clamp(cameraPosition.y, horizontalBounds.x, horizontalBounds.y);

@@ -143,9 +143,6 @@ namespace UnityIntro.Erik.Platformer
             //z = z;
             return this;
         }
-
-
-
         #endregion
     }
 }
