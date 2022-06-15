@@ -9,8 +9,11 @@ namespace Richie.Platformer
         private PlayerInput _controller;
         private CapsuleCollider _collider;
 
+        private bool _canDrift;
+
         [Header("Movement Settings")]
         [SerializeField] private float speed = 8f;
+        [SerializeField] private float _inAirControl = 8f;
         [SerializeField] private float _jumpHeight = 10f;
         private Vector _input, _direction;
 
