@@ -63,7 +63,5 @@ namespace UnityIntro.Erik.Platformer
                 transform.forward = ((CustomVector3)transform.forward).RotateAroundY(-rotationSpeed * Time.deltaTime); 
             }
         }
-
-
     }
 }
