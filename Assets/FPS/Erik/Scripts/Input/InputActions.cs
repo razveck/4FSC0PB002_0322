@@ -64,24 +64,6 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""Sprint"",
-                    ""type"": ""Button"",
-                    ""id"": ""f1b20a8d-c0e5-41bd-9570-8a65b42b7d53"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Sneak"",
-                    ""type"": ""Button"",
-                    ""id"": ""04e03b69-8705-45f0-998d-584ea92ef221"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
                     ""name"": ""Shoot"",
                     ""type"": ""Button"",
                     ""id"": ""b654e0b7-a5ed-4a7d-9873-99b556d899f4"",
@@ -193,6 +175,17 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""8fe95ac1-7a60-4a4c-94a4-ad4440d12b7c"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""03809332-8e52-4a88-9baf-c1ff51265897"",
                     ""path"": ""<Mouse>/delta"",
                     ""interactions"": """",
@@ -210,50 +203,6 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": ""Controller"",
                     ""action"": ""Camera Move"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""d0257627-bc8d-4972-807e-55ef534b2f4a"",
-                    ""path"": ""<Keyboard>/shift"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Sprint"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""7466d0ec-573d-4a41-848b-67620f089d76"",
-                    ""path"": ""<Gamepad>/leftTrigger"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Sprint"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""d7a95315-4996-4a5b-b1a0-1c68567d76a6"",
-                    ""path"": ""<Keyboard>/leftCtrl"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Sneak"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""e2142263-19f5-4bd6-8e14-00ab39c374b3"",
-                    ""path"": ""<Gamepad>/rightTrigger"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Sneak"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -318,8 +267,6 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
         m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
         m_Player_Interact = m_Player.FindAction("Interact", throwIfNotFound: true);
         m_Player_CameraMove = m_Player.FindAction("Camera Move", throwIfNotFound: true);
-        m_Player_Sprint = m_Player.FindAction("Sprint", throwIfNotFound: true);
-        m_Player_Sneak = m_Player.FindAction("Sneak", throwIfNotFound: true);
         m_Player_Shoot = m_Player.FindAction("Shoot", throwIfNotFound: true);
     }
 
@@ -384,8 +331,6 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Jump;
     private readonly InputAction m_Player_Interact;
     private readonly InputAction m_Player_CameraMove;
-    private readonly InputAction m_Player_Sprint;
-    private readonly InputAction m_Player_Sneak;
     private readonly InputAction m_Player_Shoot;
     public struct PlayerActions
     {
@@ -395,8 +340,6 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
         public InputAction @Jump => m_Wrapper.m_Player_Jump;
         public InputAction @Interact => m_Wrapper.m_Player_Interact;
         public InputAction @CameraMove => m_Wrapper.m_Player_CameraMove;
-        public InputAction @Sprint => m_Wrapper.m_Player_Sprint;
-        public InputAction @Sneak => m_Wrapper.m_Player_Sneak;
         public InputAction @Shoot => m_Wrapper.m_Player_Shoot;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
@@ -419,12 +362,6 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
                 @CameraMove.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCameraMove;
                 @CameraMove.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCameraMove;
                 @CameraMove.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCameraMove;
-                @Sprint.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSprint;
-                @Sprint.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSprint;
-                @Sprint.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSprint;
-                @Sneak.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSneak;
-                @Sneak.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSneak;
-                @Sneak.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSneak;
                 @Shoot.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnShoot;
                 @Shoot.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnShoot;
                 @Shoot.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnShoot;
@@ -444,12 +381,6 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
                 @CameraMove.started += instance.OnCameraMove;
                 @CameraMove.performed += instance.OnCameraMove;
                 @CameraMove.canceled += instance.OnCameraMove;
-                @Sprint.started += instance.OnSprint;
-                @Sprint.performed += instance.OnSprint;
-                @Sprint.canceled += instance.OnSprint;
-                @Sneak.started += instance.OnSneak;
-                @Sneak.performed += instance.OnSneak;
-                @Sneak.canceled += instance.OnSneak;
                 @Shoot.started += instance.OnShoot;
                 @Shoot.performed += instance.OnShoot;
                 @Shoot.canceled += instance.OnShoot;
@@ -481,8 +412,6 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
         void OnJump(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
         void OnCameraMove(InputAction.CallbackContext context);
-        void OnSprint(InputAction.CallbackContext context);
-        void OnSneak(InputAction.CallbackContext context);
         void OnShoot(InputAction.CallbackContext context);
     }
 }
