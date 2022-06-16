@@ -18,7 +18,6 @@ namespace UnityIntro.Algorithms {
 		public Node StartNode;
 		public Node CurrentNode;
 
-
 		// Use this for initialization
 		private void Start() {
 			CurrentNode = StartNode;
