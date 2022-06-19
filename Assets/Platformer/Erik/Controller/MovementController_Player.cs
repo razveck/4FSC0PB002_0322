@@ -5,6 +5,7 @@ using Unity.Profiling.Editor;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
+using UnityIntro.Erik.FPS;
 
 namespace UnityIntro.Erik.Platformer
 {
