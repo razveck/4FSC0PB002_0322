@@ -27,7 +27,7 @@ namespace UnityIntro.Erik.FPS
 
         private void OnTriggerEnter(Collider other)
         {
-            if (other.gameObject.HasComponent<PlayerController>())
+            if (other.gameObject.TryGetComponent(out IPlayer player))
             {
                 triggerEffect?.Invoke();
                 Lower();
@@ -35,7 +35,7 @@ namespace UnityIntro.Erik.FPS
         }
         private void OnTriggerExit(Collider other)
         {
-            if (other.gameObject.HasComponent<PlayerController>())
+            if (other.gameObject.TryGetComponent(out IPlayer player))
             {
                 Raise();
             }

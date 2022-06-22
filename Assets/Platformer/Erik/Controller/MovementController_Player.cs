@@ -5,10 +5,11 @@ using Unity.Profiling.Editor;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
+using UnityIntro.Erik.FPS;
 
 namespace UnityIntro.Erik.Platformer
 {
-    public class MovementController_Player : MonoBehaviour
+    public class MovementController_Player : MonoBehaviour, IPlayer
     {
         [Header("Move Stats")]
         public float MoveSpeed;

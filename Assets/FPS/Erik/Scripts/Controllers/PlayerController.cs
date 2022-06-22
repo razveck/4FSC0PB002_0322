@@ -9,7 +9,7 @@ namespace UnityIntro.Erik.FPS
 
 
     [SelectionBase]
-    public class PlayerController : MonoBehaviour
+    public class PlayerController : MonoBehaviour, IPlayer
     {
         [Header("Move Stats")]
         public float moveSpeed = 3.5f;

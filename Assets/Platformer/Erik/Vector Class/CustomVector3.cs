@@ -74,7 +74,8 @@ namespace UnityIntro.Erik.Platformer
             get => (x * x + y * y + z * z);
         }
        
-        public CustomVector3 getClosestPoint(CustomVector3[] inp){
+        
+        public CustomVector3 getClosestPoint(ICollection<CustomVector3> inp){
             CustomVector3 Vector = new();
             float dist = float.MaxValue;
             foreach (CustomVector3 item in inp){
@@ -85,29 +86,8 @@ namespace UnityIntro.Erik.Platformer
             }
             return Vector;
         }
-        public CustomVector3 getClosestPoint(List<CustomVector3> inp){
-            CustomVector3 Vector = new();
-            float dist = float.MaxValue;
-            foreach (CustomVector3 item in inp){
-                if(Distance(item) < dist){
-                    dist = Distance(item);
-                    Vector = item;
-                }
-            }
-            return Vector;
-        }
-        public CustomVector3 getFurthestPoint(CustomVector3[] inp){
-            CustomVector3 Vector = new();
-            float dist = float.MinValue;
-            foreach (CustomVector3 item in inp){
-                if(Distance(item) > dist){
-                    dist = Distance(item);
-                    Vector = item;
-                }
-            }
-            return Vector;
-        }
-        public CustomVector3 getFurthestPoint(List<CustomVector3> inp){
+
+        public CustomVector3 getFurthestPoint(ICollection<CustomVector3> inp){
             CustomVector3 Vector = new();
             float dist = float.MinValue;
             foreach (CustomVector3 item in inp){

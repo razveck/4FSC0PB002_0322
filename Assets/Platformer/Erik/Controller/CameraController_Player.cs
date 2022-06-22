@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
+using UnityIntro.Erik.FPS;
 
 namespace UnityIntro.Erik.Platformer
 {
@@ -26,6 +27,7 @@ namespace UnityIntro.Erik.Platformer
         }
         private void LateUpdate() {
             Move(input.cameraDir);
+            RotateBody();
         }
 
         public void Move(Vector2 dirDelta){
