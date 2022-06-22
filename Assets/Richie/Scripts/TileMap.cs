@@ -9,26 +9,28 @@ namespace Richie.TowerDefence
         public Vector2 grid = new(10f, 10f);
 
         [Header("References")]
+        [SerializeField] private Transform _worldCenter;
         [SerializeField] private GameObject _worldTile;
         [SerializeField] private GameObject _pathTile;
         [SerializeField] private GameObject _entrance;
         [SerializeField] private GameObject _exit;
 
-        private GameObject _tiles;
+        private GameObject _tiles, _doors;
         private Vector3 _start, _end;
         public Dictionary<Vector2, TileInfo> WorldTiles;
 
-        PathCreation _pathFinder;
+        private PathCreation _pathFinder;
         private List<Vector2> _pathTiles;
-
-        public Transform _worldCenter;
 
         private void Awake()
         {
-            _pathFinder = GetComponentInChildren<PathCreation>();
             WorldTiles = new Dictionary<Vector2, TileInfo>();
+            _pathFinder = GetComponentInChildren<PathCreation>();
+
             _tiles = new GameObject("Tiles");
+            _doors = new GameObject("Doors");
             _tiles.transform.parent = transform;
+            _doors.transform.parent = transform;
 
             FindCenter();
         }
@@ -75,8 +77,8 @@ namespace Richie.TowerDefence
 
         private void GenerateDoors()
         {
-            Instantiate(_entrance, new Vector3(_start.x, 1f, _start.z), Quaternion.identity, _tiles.transform);
-            Instantiate(_exit, new Vector3(_end.x, 1f, _end.z), Quaternion.identity, _tiles.transform);
+            Instantiate(_entrance, new Vector3(_start.x, 1f, _start.z), Quaternion.identity, _doors.transform);
+            Instantiate(_exit, new Vector3(_end.x, 1f, _end.z), Quaternion.identity, _doors.transform);
         }
 
         private void FindCenter()

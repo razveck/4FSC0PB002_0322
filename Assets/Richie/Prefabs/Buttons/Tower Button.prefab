@@ -371,7 +371,7 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 0.47058824}
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 0.39215687}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 0.627451}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.78431374}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -418,9 +418,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aefeedde11eb903429f8e24dbf7dd45b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _placeTower: {fileID: 0}
-  Name: Gunner
-  Cost: 20
   _tower: {fileID: 3689714396040020257, guid: a0ce2727ef7bbd64b90a9772d72c1b28, type: 3}
+  _placeTower: {fileID: 0}
   _name: {fileID: 5755225462050372928}
   _cost: {fileID: 5755225461395655180}

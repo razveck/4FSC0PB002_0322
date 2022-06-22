@@ -10,8 +10,9 @@ namespace Richie.TowerDefence
         private Vector2 _direction, _scrollValue;
 
         [Header("Settings")]
-        [SerializeField] private float moveSpeed = 5f;
-        [SerializeField] private float scrollSpeed = 5f;
+        [SerializeField] private float _moveSpeed = 5f;
+        [SerializeField] private float _scrollSpeed = 5f;
+        [SerializeField] private float _zoomModifier = 3f;
 
         [Header("References")]
         [SerializeField] private Transform _camera;
@@ -37,14 +38,14 @@ namespace Richie.TowerDefence
         private void Move()
         {
             _direction = _action.defence.move.ReadValue<Vector2>();
-            Vector3 input = (_direction.y * (moveSpeed / 100) * transform.forward) + (_direction.x * (moveSpeed / 100) * transform.right);
+            Vector3 input = (_direction.y * (_moveSpeed / 100) * transform.forward) + (_direction.x * (_moveSpeed / 100) * transform.right);
             transform.position += input;
         }
 
         public void Zoom()
         {
             _scrollValue = _action.defence.scroll.ReadValue<Vector2>();
-            transform.position += (_scrollValue.y) * scrollSpeed * Time.deltaTime * _camera.forward;
+            transform.position += _scrollValue.y / _zoomModifier * _scrollSpeed * Time.deltaTime * _camera.forward;
         }
 
         private void Center()

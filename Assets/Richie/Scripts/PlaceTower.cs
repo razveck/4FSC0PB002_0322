@@ -6,11 +6,11 @@ namespace Richie.TowerDefence
 {
     public class PlaceTower : MonoBehaviour
     {
-        public GameObject Selected;
-        public float offSet = 0.55f;
-
         private GameManager _gameManager;
 
+        [SerializeField] private float _yOffset = 0.55f;
+        internal GameObject Selected;
+        
         public event Cancel OnCancel;
         public delegate void Cancel();
 
@@ -21,11 +21,11 @@ namespace Richie.TowerDefence
 
         public GameObject PlantTower(Transform tile)
         {
-            Vector3 tilePosition = new(tile.position.x, tile.position.y + offSet, tile.position.z);
+            Vector3 tilePosition = new(tile.position.x, tile.position.y + _yOffset, tile.position.z);
 
             GameObject tower = Instantiate(Selected, tilePosition, Quaternion.identity, tile);
-            tile.GetComponent<TileInfo>().Tower = tower;
             _gameManager._currentMoney -= tower.GetComponent<TowerBase>().Cost;
+            tile.GetComponent<TileInfo>().SetTower(tower);
 
             Selected = null;
             return tower;

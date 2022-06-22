@@ -5,8 +5,8 @@ namespace Richie.TowerDefence
 {
     public class HealthBar : MonoBehaviour
     {
-        public Slider slider;
-        public GameObject _canvas;
+        [SerializeField] private Slider slider;
+        [SerializeField] private GameObject _canvas;
 
         private void Start()
         {

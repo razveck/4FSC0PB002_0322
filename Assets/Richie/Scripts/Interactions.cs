@@ -74,7 +74,7 @@ namespace Richie.TowerDefence
 
                     Destroy(tile.Tower);
                     tile.SetValid(true);
-                    tile.Tower = null;
+                    tile.SetTower(null);
 
                     _gameManager._sellAmount = refund;
                     _gameManager._refund = false;
@@ -90,13 +90,14 @@ namespace Richie.TowerDefence
         {
             if (!_sell)
             {
-                _gameManager._refundActive.SetActive(true);
+                _gameManager._showRefund.SetActive(true);
                 _gameManager._refund = true;
+                _placeTower.Selected = null;
                 _sell = true;
             }
             else
             {
-                _gameManager._refundActive.SetActive(false);
+                _gameManager._showRefund.SetActive(false);
                 _gameManager._refund = false;
                 _sell = false;
             }

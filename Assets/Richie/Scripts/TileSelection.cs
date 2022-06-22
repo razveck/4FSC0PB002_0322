@@ -32,7 +32,7 @@ namespace Richie.TowerDefence
             {
                 _renderer.material = _validSelection;
             }
-            else
+            else 
                 _renderer.material = _invalidSelection;
         }
 

@@ -8,8 +8,8 @@ namespace Richie.TowerDefence
         public Vector3 Coordinates { get; private set; }
         public bool IsPathTile { get; private set; }
         public bool IsValid { get; private set; }
+        public GameObject Tower { get; private set; }
 
-        public GameObject Tower;
         public List<EnemyMovement> Occupants;
 
         private void Start()
@@ -35,6 +35,8 @@ namespace Richie.TowerDefence
                 }
             }
         }
+
+        public void SetTower(GameObject tower) => Tower = tower;
 
         public void SetValid(bool isValid) => IsValid = isValid;
 

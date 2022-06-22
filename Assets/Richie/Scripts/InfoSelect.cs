@@ -5,6 +5,8 @@ namespace Richie.TowerDefence
 {
     public class InfoSelect : MonoBehaviour
     {
+        private TowerBase _tower;
+
         [Header("References")]
         [SerializeField] private GameObject _currentSelect;
         [SerializeField] private PlaceTower _placeTower;
@@ -12,8 +14,6 @@ namespace Richie.TowerDefence
         [SerializeField] private TextMeshProUGUI _damage;
         [SerializeField] private TextMeshProUGUI _range;
         [SerializeField] private TextMeshProUGUI _firerate;
-
-        private TowerBase _tower;
 
         void Start()
         {

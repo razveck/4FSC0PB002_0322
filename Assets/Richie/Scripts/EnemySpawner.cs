@@ -5,10 +5,10 @@ namespace Richie.TowerDefence
 {
     public class EnemySpawner : MonoBehaviour
     {
+        private Vector3 _startPos, _endPos;
         private float _timer, _tempHealth;
         private int _currentAmount;
-        private Vector3 _startPos;
-        private Vector3 _endPos;
+        private bool _spawn;
 
         private TileMap _tileMap;
         private PathCreation _path;
@@ -17,7 +17,6 @@ namespace Richie.TowerDefence
         [Header("Spawner Setting")]
         [SerializeField] private int _amount;
         [SerializeField] private float _timeBetween;
-        private bool _spawn;
 
         [Header("Per Round Modifiers")]
         [SerializeField] private float _amountModifer = 1;
@@ -30,6 +29,7 @@ namespace Richie.TowerDefence
         [SerializeField] private GameObject _enemies;
         [SerializeField] private EnemyHealth _enemyHealth;
 
+        // events //
         public event UpdateLives OnEnemyExit;
         public delegate void UpdateLives();
 
@@ -121,8 +121,10 @@ namespace Richie.TowerDefence
             {
                 GameObject enemy = Instantiate(_enemies, _startPos, Quaternion.identity, _allEnemies.transform);
                 EnemyMovement enemyPos = enemy.GetComponent<EnemyMovement>();
+
                 enemy.GetComponent<EnemyHealth>().health = _tempHealth;
                 AllEnemies.Add(enemyPos);
+
                 _timer = _timeBetween;
                 _currentAmount++;
             }

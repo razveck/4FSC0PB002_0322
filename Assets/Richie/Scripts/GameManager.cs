@@ -11,7 +11,8 @@ namespace Richie.TowerDefence
         [SerializeField] private int rewardOnKill = 5;
         [SerializeField] private int maxLives = 3;
         private int _currentLives, _currentRound = 1;
-        internal int _currentMoney;
+        internal int _currentMoney, _sellAmount;
+        internal bool _refund;
 
         [Header("Text References")]
         [SerializeField] private TextMeshProUGUI _wallet;
@@ -20,16 +21,14 @@ namespace Richie.TowerDefence
         [SerializeField] private TextMeshProUGUI _deathRounds;
 
         [Header("Object References")]
-        [SerializeField] internal GameObject _refundActive;
+        [SerializeField] internal GameObject _showRefund;
         [SerializeField] private GameObject _deathScreen;
-
-        internal int _sellAmount;
-        internal bool _refund;
 
         private void OnValidate()
         {
             _currentLives = maxLives;
             _currentMoney = moneyOnStart;
+            _wallet.text = $"${_currentMoney}";
         }
 
         void Start()
@@ -53,7 +52,7 @@ namespace Richie.TowerDefence
         private void Interactions_OnSellTower()
         {
             _currentMoney += _sellAmount;
-            _refundActive.SetActive(false);
+            _showRefund.SetActive(false);
         }
 
         private void EnemyManager_OnChangeRound()
