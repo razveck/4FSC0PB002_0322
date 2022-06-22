@@ -13,7 +13,7 @@ namespace Richie.Platformer
 
         [Header("Movement Settings")]
         [SerializeField] private float speed = 8f;
-        [SerializeField] private float _inAirControl = 8f;
+        //[SerializeField] private float _inAirControl = 8f;
         [SerializeField] private float _jumpHeight = 10f;
         private Vector _input, _direction;
 
