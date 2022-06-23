@@ -119,9 +119,4 @@ MonoBehaviour:
   placableTile: {fileID: 2100000, guid: a762e8a5d69a3bd45b203c5342378bde, type: 2}
   impassableTile: {fileID: 2100000, guid: ec974c45e3dcf124591d2b971ee5129f, type: 2}
   generator: {fileID: 0}
-  connection_North: {fileID: 0}
-  connection_NorthWest: {fileID: 0}
-  connection_NorthEast: {fileID: 0}
-  connection_South: {fileID: 0}
-  connection_SouthWest: {fileID: 0}
-  connection_SouthEast: {fileID: 0}
+  Adjacencies: []

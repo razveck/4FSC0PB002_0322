@@ -32,6 +32,14 @@ namespace UnityIntro.Erik.TowerDefense
         public List<TowerDefense_Tile> Adjacencies = new();
 
         private void Update() {
+            UpdateMaterials();
+        }
+
+		private void OnValidate() {
+			UpdateMaterials();
+		}
+
+		public void UpdateMaterials(){
             MeshRenderer mr = GetComponent<MeshRenderer>(); 
             switch (tileState)
             {

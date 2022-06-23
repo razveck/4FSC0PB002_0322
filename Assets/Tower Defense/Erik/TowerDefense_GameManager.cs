@@ -47,20 +47,18 @@ namespace UnityIntro.Erik.TowerDefense
                 }
                 if(enemy.currentTile == MapGenerator.endTile){
                     PlayerHealth--;
+                    Enemies.Remove(enemy);
                     Destroy(enemy.gameObject);
                 }
                 
-                int i = 0;
-                while(MapGenerator.fullPath[i] != enemy.currentTile)
-                    i++;
-                
-                enemy.currentTile = MapGenerator.fullPath[i++];
-                enemy.transform.position = MapGenerator.fullPath[i++].transform.position;
-                
+                enemy.currentTileIndex++;
+                enemy.currentTile = MapGenerator.fullPath[enemy.currentTileIndex];
+                enemy.transform.position = MapGenerator.fullPath[enemy.currentTileIndex].transform.position;
             }
             if(Enemies.Count < EnemyCount){
                 GameObject enemy = Instantiate(EnemyPrefab, MapGenerator.startTile.transform.position, Quaternion.identity);
                 Enemies.Add(enemy.GetComponent<TowerDefense_Enemy>());
+                enemy.GetComponent<TowerDefense_Enemy>().currentTile = MapGenerator.startTile;
             }
         }
         void doTowers(){
@@ -71,10 +69,16 @@ namespace UnityIntro.Erik.TowerDefense
                     }
             }
         }
+        [ContextMenu("Tick")]
     
         void doTick(){
             doEnemies();
             doTowers();
         }
-    }
+
+		private void Update() {
+			if(Input.GetKeyDown(KeyCode.Space))
+                doTick();
+		}
+	}
 }
