@@ -923,7 +923,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _camera: {fileID: 484181274}
-  _sensitivity: 0.5
+  _sensitivity: 0.25
 --- !u!114 &298294629
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -937,7 +937,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 8
-  _inAirControl: 5
   _jumpHeight: 5
   _whatIsGround:
     serializedVersion: 2

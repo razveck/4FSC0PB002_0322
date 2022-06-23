@@ -1,6 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using Vectors_Richie;
 
 namespace FPS_Richie
 {
@@ -98,7 +97,7 @@ namespace FPS_Richie
 
         private bool IsGrounded()
         {
-            Vector3 checkPos = transform.position - new Vector3(0f, _collider.height / 2f) + _collider.center;
+            Vector checkPos = new Vector(0f, _collider.height / 2f).Invert + _collider.center + transform.position;
             return Physics.CheckSphere(checkPos, _radius, _whatIsGround);
         }
 

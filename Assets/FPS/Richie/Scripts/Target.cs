@@ -10,7 +10,7 @@ namespace FPS_Richie
         [SerializeField] private float _respawnTime;
         [SerializeField] private GameObject _target;
 
-        private float _counter, _currenthealth;
+        public float _counter, _currenthealth;
         private bool _respawn = false;
 
         private GameObject _temp;

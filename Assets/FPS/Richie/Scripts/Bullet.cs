@@ -10,7 +10,7 @@ namespace FPS_Richie
 
         private void OnCollisionEnter(Collision other)
         {
-            if (other.transform.TryGetComponent<Target>(out Target target))
+            if (other.transform.TryGetComponent(out Target target))
             {
                 target.TakeDamage(Damage);
             }
