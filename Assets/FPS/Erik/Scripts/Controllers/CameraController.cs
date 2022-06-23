@@ -46,7 +46,6 @@ namespace UnityIntro.Erik.FPS
         void Move(Vector2 dirDelta)
         {
             //CameraPos is used to track rotation of the camera
-
             dirDelta *= cameraMoveSpeed * Time.deltaTime;
             dirDelta.y *= -1;
             //Check movement left and right for camera to see if it remains inside its bounds 

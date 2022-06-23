@@ -28,17 +28,18 @@ namespace UnityIntro.Erik.FPS {
 
 		}
 
-		[ReadOnly] public Vector2 moveDir;
-		[ReadOnly] public Vector2 cameraDir;
-		[ReadOnly] public bool jumpFlag;
-		[ReadOnly] public bool interactFlag;
-		[ReadOnly] public bool attackFlag;
-		private void OnEnable() {
-			inputActions.Enable();
-		}
-		private void OnDisable() {
-			inputActions.Disable();
-		}
+    [ReadOnly] public Vector2 moveDir;
+    [ReadOnly] public Vector2 cameraDir;
+    [ReadOnly] public bool jumpFlag;
+    [ReadOnly] public bool interactFlag;
+    [ReadOnly] public bool attackFlag;
+    
+    private void OnEnable() {
+        inputActions.Enable();
+    }
+    private void OnDisable() {
+        inputActions.Disable();
+    }
 
 	}
 }

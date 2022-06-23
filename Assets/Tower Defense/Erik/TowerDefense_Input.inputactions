@@ -1,0 +1,60 @@
+{
+    "name": "TowerDefense_Input",
+    "maps": [
+        {
+            "name": "GameControl",
+            "id": "cf168872-8015-4df6-b5eb-9951f321979f",
+            "actions": [
+                {
+                    "name": "PlaceTower",
+                    "type": "Button",
+                    "id": "64c907e9-814e-44bd-b2ac-fe8b01fb333d",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "MousePos",
+                    "type": "Value",
+                    "id": "ed2e96ea-f828-4abd-9062-87595de38f47",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "ee6b0c08-3fb6-433d-9443-51bc0502ba5e",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Mouse and Keyboard",
+                    "action": "PlaceTower",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e1a6c95d-14b8-4aed-849a-50bc69fdff03",
+                    "path": "<Pointer>/position",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Mouse and Keyboard",
+                    "action": "MousePos",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": [
+        {
+            "name": "Mouse and Keyboard",
+            "bindingGroup": "Mouse and Keyboard",
+            "devices": []
+        }
+    ]
+}
