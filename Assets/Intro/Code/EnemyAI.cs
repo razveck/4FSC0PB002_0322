@@ -7,7 +7,7 @@ public class EnemyAI : MonoBehaviour {
 	
 	
 	[SerializeField]
-	float speed = 0.5f;
+	//float speed = 0.5f;
 
 
 	Rigidbody Rigidbody;

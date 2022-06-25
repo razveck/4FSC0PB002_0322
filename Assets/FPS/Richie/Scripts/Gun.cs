@@ -16,7 +16,7 @@ namespace FPS_Richie
 
         [Header("Hit Scan Settings")]
         [SerializeField] protected float hitScanDamage = 10f;
-        [SerializeField] private float fireRate = 15f;
+        //[SerializeField] private float fireRate = 15f;
         [SerializeField] private float range = 100f;
 
         [Header("Projectile Settings")]

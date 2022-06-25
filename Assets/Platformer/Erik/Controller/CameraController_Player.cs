@@ -27,6 +27,7 @@ namespace UnityIntro.Erik.Platformer
         }
         private void LateUpdate() {
             Move(input.cameraDir);
+            RotateBody();
         }
 
         public void Move(Vector2 dirDelta){
