@@ -23,7 +23,7 @@ namespace UnityIntro.Erik.HackAndSlash
             GameObject result = null;
             float val = Random.Range(0, fullWeight + 1);
             foreach (var item in Drops){
-                if(item.Weight > val){
+                if(item.Weight < val){
                     val -= item.Weight;
                 } else {
                     result = item.Item;
