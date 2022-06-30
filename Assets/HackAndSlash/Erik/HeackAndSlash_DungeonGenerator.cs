@@ -24,6 +24,7 @@ namespace UnityIntro.Erik.HackAndSlash
         [SerializeField] private GameObject EnemyPrefab;
 
         [ContextMenu("Generate Map")]
+        //Change it to X/Z 
         public void GenerateRooms(){
             var roomsList = BinarySpacePartitioning(
                 new BoundsInt((Vector3Int)StartPosition, new Vector3Int(dungeonDimensions.x, 0, dungeonDimensions.y)),
@@ -60,10 +61,9 @@ namespace UnityIntro.Erik.HackAndSlash
             floor.UnionWith(corridors);
 
             //instantiate floor tiles
-            foreach (var tile in floor){
+            foreach (var tile in floor)
                 Instantiate(FloorTilePrefab, new Vector3(tile.x, 0, tile.y), Quaternion.identity, this.transform);
-            }    
-
+            
             //create navmesh
             UnityEditor.AI.NavMeshBuilder.BuildNavMesh();
         }
@@ -77,10 +77,8 @@ namespace UnityIntro.Erik.HackAndSlash
             while (roomsQueue.Count > 0)
             {
                 var room = roomsQueue.Dequeue();
-                if (room.size.y >= minHeight && room.size.x >= minWidth)
-                {
-                    if (Random.value < 0.5f)
-                    {
+                if (room.size.y >= minHeight && room.size.x >= minWidth){
+                    if (Random.value < 0.5f){
                         if (room.size.y >= minHeight * 2){
                             SplitHorizontally(minHeight, roomsQueue, room);
                         }
@@ -90,9 +88,7 @@ namespace UnityIntro.Erik.HackAndSlash
                         else if (room.size.x >= minWidth && room.size.y >= minHeight){
                             roomsList.Add(room);
                         }
-                    }
-                    else
-                    {
+                    } else {
                         if (room.size.x >= minWidth * 2){
                             SplitVertically(minWidth, roomsQueue, room);
                         }else if (room.size.y >= minHeight * 2){

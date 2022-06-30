@@ -58,6 +58,7 @@ namespace UnityIntro.Erik.HackAndSlash
             //Physics.Raycast(hitRay, out RaycastHit rh);
             //Vector3 dir = (rh.point - transform.position).normalized;
 
+<<<<<<< Updated upstream
             //transform.forward = transform.position + dir;
 
             
@@ -68,6 +69,16 @@ namespace UnityIntro.Erik.HackAndSlash
 
             transform.forward = worldDir;
             
+=======
+            transform.forward = transform.position + dir;
+
+            /*
+
+            float angle = Vector3.Angle(transform.Forward, worldDir);
+            Tranform.Rotation.Euler = new Vector3(Transform.Rotation.Euler.X, angle, Transform.Rotation.Euler.Z);
+
+            */
+>>>>>>> Stashed changes
         }
 
         private void OnEnable() => input.Enable();

@@ -773,7 +773,7 @@ MonoBehaviour:
   offset: 2
   EnemyCount: 10
   FloorTilePrefab: {fileID: 665344310612633225, guid: 32754500044ba8548a05f949b83a3ffd, type: 3}
-  EnemyPrefab: {fileID: 0}
+  EnemyPrefab: {fileID: 1712764432700605573, guid: 68aea80ac9fad8846803ffe6bb7ca9ff, type: 3}
 --- !u!1001 &1712764431620515365
 PrefabInstance:
   m_ObjectHideFlags: 0
