@@ -196,6 +196,78 @@ namespace Richie
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""player"",
+            ""id"": ""c7824d49-796a-4125-8b4f-7f45e07b91cc"",
+            ""actions"": [
+                {
+                    ""name"": ""movement"",
+                    ""type"": ""Value"",
+                    ""id"": ""8e27e610-e8fb-4f34-afc6-e573123f8a19"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": ""WASD"",
+                    ""id"": ""36038db1-3e4b-4d02-81a7-c3cb2d3ce0e1"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""movement"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""8f696d13-08d5-4c13-853a-7cf450dd084b"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""d7a663eb-b97c-46b1-9f58-99f33a7c5631"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""53c7e42c-76d9-4ac8-91ef-75cd87c5ef84"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""e97062ac-98ef-49d3-868d-a17111d953f3"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -208,6 +280,9 @@ namespace Richie
             m_defence_scroll = m_defence.FindAction("scroll", throwIfNotFound: true);
             m_defence_mouse = m_defence.FindAction("mouse", throwIfNotFound: true);
             m_defence_center = m_defence.FindAction("center", throwIfNotFound: true);
+            // player
+            m_player = asset.FindActionMap("player", throwIfNotFound: true);
+            m_player_movement = m_player.FindAction("movement", throwIfNotFound: true);
         }
 
         public void Dispose()
@@ -336,6 +411,39 @@ namespace Richie
             }
         }
         public DefenceActions @defence => new DefenceActions(this);
+
+        // player
+        private readonly InputActionMap m_player;
+        private IPlayerActions m_PlayerActionsCallbackInterface;
+        private readonly InputAction m_player_movement;
+        public struct PlayerActions
+        {
+            private @PlayerInput m_Wrapper;
+            public PlayerActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
+            public InputAction @movement => m_Wrapper.m_player_movement;
+            public InputActionMap Get() { return m_Wrapper.m_player; }
+            public void Enable() { Get().Enable(); }
+            public void Disable() { Get().Disable(); }
+            public bool enabled => Get().enabled;
+            public static implicit operator InputActionMap(PlayerActions set) { return set.Get(); }
+            public void SetCallbacks(IPlayerActions instance)
+            {
+                if (m_Wrapper.m_PlayerActionsCallbackInterface != null)
+                {
+                    @movement.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMovement;
+                    @movement.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMovement;
+                    @movement.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMovement;
+                }
+                m_Wrapper.m_PlayerActionsCallbackInterface = instance;
+                if (instance != null)
+                {
+                    @movement.started += instance.OnMovement;
+                    @movement.performed += instance.OnMovement;
+                    @movement.canceled += instance.OnMovement;
+                }
+            }
+        }
+        public PlayerActions @player => new PlayerActions(this);
         public interface IDefenceActions
         {
             void OnLeft(InputAction.CallbackContext context);
@@ -344,6 +452,10 @@ namespace Richie
             void OnScroll(InputAction.CallbackContext context);
             void OnMouse(InputAction.CallbackContext context);
             void OnCenter(InputAction.CallbackContext context);
+        }
+        public interface IPlayerActions
+        {
+            void OnMovement(InputAction.CallbackContext context);
         }
     }
 }
