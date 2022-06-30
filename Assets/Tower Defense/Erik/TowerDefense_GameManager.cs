@@ -71,6 +71,7 @@ namespace UnityIntro.Erik.TowerDefense
         }
         [ContextMenu("Tick")]
     
+        [ContextMenu("Do tick")]
         void doTick(){
             doEnemies();
             doTowers();
