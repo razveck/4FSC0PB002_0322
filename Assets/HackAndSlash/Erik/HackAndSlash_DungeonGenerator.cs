@@ -9,7 +9,7 @@ namespace UnityIntro.Erik.HackAndSlash
     /// <summary>
     /// https://www.youtube.com/playlist?list=PLcRSafycjWFenI87z7uZHFv6cUG2Tzu9v reference tutorial
     /// </summary>
-    public class HeackAndSlash_DungeonGenerator : MonoBehaviour
+    public class HackAndSlash_DungeonGenerator : MonoBehaviour
     {
         
 
