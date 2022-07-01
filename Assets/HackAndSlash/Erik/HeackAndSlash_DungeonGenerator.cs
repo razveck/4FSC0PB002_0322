@@ -29,11 +29,7 @@ namespace UnityIntro.Erik.HackAndSlash
         [ContextMenu("Generate Map")]
         //Change it to X/Z 
         public void GenerateRooms(){
-            foreach (var item in createdObjects){
-                DestroyImmediate(item.gameObject);
-            }
-            createdObjects = new();
-
+            DeleteMap();
             var roomsList = BinarySpacePartitioning(
                 new BoundsInt((Vector3Int)StartPosition, new Vector3Int(dungeonDimensions.x, 0, dungeonDimensions.y)),
                 minRoomDimensions.x, 
@@ -74,6 +70,14 @@ namespace UnityIntro.Erik.HackAndSlash
             
             //create navmesh
             UnityEditor.AI.NavMeshBuilder.BuildNavMesh();
+        }
+
+        [ContextMenu("Delete Map")]
+        void DeleteMap(){
+            foreach (var item in createdObjects){
+                DestroyImmediate(item.gameObject);
+            }
+            createdObjects = new();
         }
 
         #region BinarySpacePartioning
