@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using UnityEngine;
 
@@ -23,9 +24,16 @@ namespace UnityIntro.Erik.HackAndSlash
         [SerializeField] private GameObject FloorTilePrefab;
         [SerializeField] private GameObject EnemyPrefab;
 
+        [SerializeField] private List<Transform> createdObjects;
+
         [ContextMenu("Generate Map")]
         //Change it to X/Z 
         public void GenerateRooms(){
+            foreach (var item in createdObjects){
+                DestroyImmediate(item.gameObject);
+            }
+            createdObjects = new();
+
             var roomsList = BinarySpacePartitioning(
                 new BoundsInt((Vector3Int)StartPosition, new Vector3Int(dungeonDimensions.x, 0, dungeonDimensions.y)),
                 minRoomDimensions.x, 
@@ -38,7 +46,7 @@ namespace UnityIntro.Erik.HackAndSlash
             {
                 for (int col = offset; col < room.size.x - offset; col++)
                 {
-                    for (int row = offset; row < room.size.y - offset; row++)
+                    for (int row = offset; row < room.size.z - offset; row++)
                     {
                         Vector2Int position = (Vector2Int)room.min + new Vector2Int(col, row);
                         floor.Add(position);
@@ -49,7 +57,7 @@ namespace UnityIntro.Erik.HackAndSlash
             for (int i = 0; i < EnemyCount; i++){
                 int ind = Random.Range(0, floor.Count);
                 Vector3 pos = new Vector3(floor.ToArray()[ind].x, 0, floor.ToArray()[ind].y);
-                Instantiate(EnemyPrefab, pos, Quaternion.identity);
+                createdObjects.Add(Instantiate(EnemyPrefab, pos, Quaternion.identity).transform);
             }
 
             //create corridors between rooms
@@ -62,7 +70,7 @@ namespace UnityIntro.Erik.HackAndSlash
 
             //instantiate floor tiles
             foreach (var tile in floor)
-                Instantiate(FloorTilePrefab, new Vector3(tile.x, 0, tile.y), Quaternion.identity, this.transform);
+                createdObjects.Add(Instantiate(FloorTilePrefab, new Vector3(tile.x, 0, tile.y), Quaternion.identity, this.transform).transform);
             
             //create navmesh
             UnityEditor.AI.NavMeshBuilder.BuildNavMesh();
@@ -77,23 +85,23 @@ namespace UnityIntro.Erik.HackAndSlash
             while (roomsQueue.Count > 0)
             {
                 var room = roomsQueue.Dequeue();
-                if (room.size.y >= minHeight && room.size.x >= minWidth){
+                if (room.size.z >= minHeight && room.size.x >= minWidth){
                     if (Random.value < 0.5f){
-                        if (room.size.y >= minHeight * 2){
+                        if (room.size.z >= minHeight * 2){
                             SplitHorizontally(minHeight, roomsQueue, room);
                         }
                         else if (room.size.x >= minWidth * 2){
                             SplitVertically(minWidth, roomsQueue, room);
                         }
-                        else if (room.size.x >= minWidth && room.size.y >= minHeight){
+                        else if (room.size.x >= minWidth && room.size.z >= minHeight){
                             roomsList.Add(room);
                         }
                     } else {
                         if (room.size.x >= minWidth * 2){
                             SplitVertically(minWidth, roomsQueue, room);
-                        }else if (room.size.y >= minHeight * 2){
+                        }else if (room.size.z >= minHeight * 2){
                             SplitHorizontally(minHeight, roomsQueue, room);
-                        }else if (room.size.x >= minWidth && room.size.y >= minHeight){
+                        }else if (room.size.x >= minWidth && room.size.z >= minHeight){
                             roomsList.Add(room);
                         }
                     }
@@ -114,14 +122,30 @@ namespace UnityIntro.Erik.HackAndSlash
 
         private void SplitHorizontally(int minHeight, Queue<BoundsInt> roomsQueue, BoundsInt room)
         {
-            var ySplit = Random.Range(1, room.size.y);
-            BoundsInt room1 = new BoundsInt(room.min, new Vector3Int(room.size.x, ySplit, room.size.z));
-            BoundsInt room2 = new BoundsInt(new Vector3Int(room.min.x, room.min.y + ySplit, room.min.z),
-                new Vector3Int(room.size.x, room.size.y - ySplit, room.size.z));
+            var ySplit = Random.Range(1, room.size.z);
+            BoundsInt room1 = new BoundsInt(room.min, new Vector3Int(room.size.x, room.size.y, ySplit));
+            BoundsInt room2 = new BoundsInt(new Vector3Int(room.min.x, room.min.y, room.min.z + ySplit),
+                new Vector3Int(room.size.x, room.size.y, room.size.z- ySplit));
             roomsQueue.Enqueue(room1);
             roomsQueue.Enqueue(room2);
         }
 
+        private HashSet<Vector2Int> ConnectRooms(List<Vector2Int> roomCenters)
+        {
+            HashSet<Vector2Int> corridors = new HashSet<Vector2Int>();
+            var currentRoomCenter = roomCenters[Random.Range(0, roomCenters.Count)];
+            roomCenters.Remove(currentRoomCenter);
+
+            while (roomCenters.Count > 0)
+            {
+                Vector2Int closest = FindClosestPointTo(currentRoomCenter, roomCenters);
+                roomCenters.Remove(closest);
+                HashSet<Vector2Int> newCorridor = CreateCorridor(currentRoomCenter, closest);
+                currentRoomCenter = closest;
+                corridors.UnionWith(newCorridor);
+            }
+            return corridors;
+        }
         private HashSet<Vector2Int> CreateCorridor(Vector2Int currentRoomCenter, Vector2Int destination)
         {
             HashSet<Vector2Int> corridor = new HashSet<Vector2Int>();
@@ -153,22 +177,6 @@ namespace UnityIntro.Erik.HackAndSlash
             }
             return corridor;
         }
-        private HashSet<Vector2Int> ConnectRooms(List<Vector2Int> roomCenters)
-        {
-            HashSet<Vector2Int> corridors = new HashSet<Vector2Int>();
-            var currentRoomCenter = roomCenters[Random.Range(0, roomCenters.Count)];
-            roomCenters.Remove(currentRoomCenter);
-
-            while (roomCenters.Count > 0)
-            {
-                Vector2Int closest = FindClosestPointTo(currentRoomCenter, roomCenters);
-                roomCenters.Remove(closest);
-                HashSet<Vector2Int> newCorridor = CreateCorridor(currentRoomCenter, closest);
-                currentRoomCenter = closest;
-                corridors.UnionWith(newCorridor);
-            }
-            return corridors;
-        }
         private Vector2Int FindClosestPointTo(Vector2Int currentRoomCenter, List<Vector2Int> roomCenters)
         {
             Vector2Int closest = Vector2Int.zero;
@@ -185,5 +193,19 @@ namespace UnityIntro.Erik.HackAndSlash
             return closest;
         }
         #endregion
+    
+        private void OnDrawGizmos() {
+            Vector3 Pos1 = new Vector3(StartPosition.x, 0, StartPosition.y);
+            Vector3 Pos2 = new Vector3(StartPosition.x, 0, dungeonDimensions.y);
+            Vector3 Pos3 = new Vector3(dungeonDimensions.x, 0, StartPosition.y);
+            Vector3 Pos4 = new Vector3(dungeonDimensions.x, 0, dungeonDimensions.y);
+
+            Gizmos.DrawLine(Pos1, Pos2);
+            Gizmos.DrawLine(Pos2, Pos4);
+            Gizmos.DrawLine(Pos1, Pos3);
+            Gizmos.DrawLine(Pos3, Pos4);
+
+
+        }
     }
 }
