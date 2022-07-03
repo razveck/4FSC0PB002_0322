@@ -16,8 +16,11 @@ namespace UnityIntro.Erik.AnimalSandbox
 
         [Header("References")]
         public List<AnimalSandbox_TileManager> Adjacencies;
+        public List<AnimalSandbox_AnimalManager> Animals;
         public AnimalSandbox_GameManager Manager;
         public LayerMask TileLayer;
+
+
 
         private void Awake() {
             Manager = AnimalSandbox_GameManager.Instance;

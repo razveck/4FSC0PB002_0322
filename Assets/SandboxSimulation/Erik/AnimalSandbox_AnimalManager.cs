@@ -62,13 +62,20 @@ namespace UnityIntro.Erik.AnimalSandbox
         }
 
 		public void doMovement(){
+			
 			StartCoroutine(movementAnimator());
 			currentTile = currentPath[moveDistance];
 		}
 
+		private void RegisterWithTile(AnimalSandbox_TileManager tile){
+			currentTile.Animals.Remove(this);
+			currentTile = tile;
+			currentTile.Animals.Add(this);
+		}
+
 		private IEnumerator movementAnimator(){
 			for (int i = 0; i < moveDistance; i++){
-				transform.position = currentPath[i].transform.position;
+				RegisterWithTile(currentPath[i]);
 				yield return new WaitForSeconds(AnimalSandbox_GameManager.Instance.AnimationTime / moveDistance);
 			}
 		}
