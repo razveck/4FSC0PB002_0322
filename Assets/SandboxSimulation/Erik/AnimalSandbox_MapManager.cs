@@ -33,5 +33,12 @@ namespace UnityIntro.Erik.AnimalSandbox
             }
             Tiles = new();
         }
+    
+        public void doTick(){
+            foreach (var tile in Tiles)
+            {
+                tile.doTick();
+            }
+        }
     }
 }

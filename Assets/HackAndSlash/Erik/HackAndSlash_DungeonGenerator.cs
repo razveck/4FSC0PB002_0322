@@ -31,21 +31,21 @@ namespace UnityIntro.Erik.HackAndSlash
         public void GenerateRooms(){
             DeleteMap();
             var roomsList = BinarySpacePartitioning(
-                new BoundsInt((Vector3Int)StartPosition, new Vector3Int(dungeonDimensions.x, 0, dungeonDimensions.y)),
+                new BoundsInt(new Vector3Int(StartPosition.x, 0, StartPosition.y), new Vector3Int(dungeonDimensions.x, 0, dungeonDimensions.y)),
                 minRoomDimensions.x, 
                 minRoomDimensions.y
-            ); // <-- Not creating rooms/returning an empty list
+            ); 
             
             //create floor space for rooms
             HashSet<Vector2Int> floor = new HashSet<Vector2Int>();
             foreach (var room in roomsList)
             {
-                for (int col = offset; col < room.size.x - offset; col++)
-                {
-                    for (int row = offset; row < room.size.z - offset; row++)
-                    {
-                        Vector2Int position = (Vector2Int)room.min + new Vector2Int(col, row);
+                for (int col = offset; col < room.size.x - offset; col++) {
+                    for (int row = offset; row < room.size.z - offset; row++){
+                        Vector2Int position = new Vector2Int(room.min.x, room.min.z) + new Vector2Int(col, row);
                         floor.Add(position);
+                        
+                        
                     }
                 }
             }
@@ -59,7 +59,7 @@ namespace UnityIntro.Erik.HackAndSlash
             //create corridors between rooms
             List<Vector2Int> roomCenters = new List<Vector2Int>();
             foreach (var room in roomsList)
-                roomCenters.Add((Vector2Int)Vector3Int.RoundToInt(room.center));
+                roomCenters.Add(new Vector2Int(Mathf.RoundToInt(room.center.x), Mathf.RoundToInt(room.center.z)));
             
             HashSet<Vector2Int> corridors = ConnectRooms(roomCenters);
             floor.UnionWith(corridors);
@@ -114,22 +114,32 @@ namespace UnityIntro.Erik.HackAndSlash
             return roomsList;
         }
 
-        private void SplitVertically(int minWidth, Queue<BoundsInt> roomsQueue, BoundsInt room)
-        {
+        private void SplitVertically(int minWidth, Queue<BoundsInt> roomsQueue, BoundsInt room) {
             var xSplit = Random.Range(1, room.size.x);
-            BoundsInt room1 = new BoundsInt(room.min, new Vector3Int(xSplit, room.size.y, room.size.z));
-            BoundsInt room2 = new BoundsInt(new Vector3Int(room.min.x + xSplit, room.min.y, room.min.z),
+
+            BoundsInt room1 = new BoundsInt(
+                room.min, 
+                new Vector3Int(xSplit, room.size.y, room.size.z));
+            BoundsInt room2 = new BoundsInt(
+                new Vector3Int(room.min.x + xSplit, room.min.y, room.min.z),
                 new Vector3Int(room.size.x - xSplit, room.size.y, room.size.z));
+            
             roomsQueue.Enqueue(room1);
             roomsQueue.Enqueue(room2);
         }
 
-        private void SplitHorizontally(int minHeight, Queue<BoundsInt> roomsQueue, BoundsInt room)
-        {
+        private void SplitHorizontally(int minHeight, Queue<BoundsInt> roomsQueue, BoundsInt room) {
             var ySplit = Random.Range(1, room.size.z);
-            BoundsInt room1 = new BoundsInt(room.min, new Vector3Int(room.size.x, room.size.y, ySplit));
-            BoundsInt room2 = new BoundsInt(new Vector3Int(room.min.x, room.min.y, room.min.z + ySplit),
-                new Vector3Int(room.size.x, room.size.y, room.size.z- ySplit));
+
+            BoundsInt room1 = new BoundsInt(
+                room.min, 
+                new Vector3Int(room.size.x, room.size.y, ySplit)
+            );
+            BoundsInt room2 = new BoundsInt(
+                new Vector3Int(room.min.x, room.min.y, room.min.z + ySplit),
+                new Vector3Int(room.size.x, room.size.y, room.size.z - ySplit)
+            );
+            
             roomsQueue.Enqueue(room1);
             roomsQueue.Enqueue(room2);
         }

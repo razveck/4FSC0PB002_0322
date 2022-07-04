@@ -1,12 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using Shizounu.AI;
 using UnityEngine;
 
 namespace UnityIntro.Erik.AnimalSandbox
 {
     public class AnimalSandbox_AnimalManager : MonoBehaviour
     {
-		[Header("Stats")]
+		[Header("Movement Stats")]
 		/// <summary>
 		/// move Distance per turn
 		/// </summary>
@@ -20,6 +21,7 @@ namespace UnityIntro.Erik.AnimalSandbox
 		[Header("References")]
         public AnimalSandbox_TileManager currentTile;
 		public List<AnimalSandbox_TileManager> currentPath;
+		public StateMachine stateMachine;
 
         public void generatePath(AnimalSandbox_TileManager goal){
             //Outer reached edge
@@ -61,14 +63,19 @@ namespace UnityIntro.Erik.AnimalSandbox
 			currentPath = Path;
         }
 
+		public virtual void doTick(){
+			doMovement();
+			stateMachine.doTick();
+		}
+
 		public void doMovement(){
-			
 			StartCoroutine(movementAnimator());
 			currentTile = currentPath[moveDistance];
 		}
 
-		private void RegisterWithTile(AnimalSandbox_TileManager tile){
-			currentTile.Animals.Remove(this);
+		public void RegisterWithTile(AnimalSandbox_TileManager tile){
+			if(currentTile != null)
+				currentTile.Animals.Remove(this);
 			currentTile = tile;
 			currentTile.Animals.Add(this);
 		}

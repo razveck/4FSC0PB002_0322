@@ -26,5 +26,13 @@ namespace UnityIntro.Erik.AnimalSandbox
         /// Time for Animations to execute
         /// </summary>
         public float AnimationTime = 1;
+
+        [Header("Animal Prefabs")]
+        public GameObject Rabbit;
+
+        public void summonRabit(AnimalSandbox_TileManager tm){
+            AnimalSandbox_AnimalManager t = Instantiate(Rabbit, transform.position, Quaternion.identity).GetComponent<AnimalSandbox_AnimalManager>();
+            t.RegisterWithTile(tm);
+        }
     }
 }

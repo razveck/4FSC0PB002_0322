@@ -27,7 +27,7 @@ namespace UnityIntro.Erik.HackAndSlash
             Destroy(go, 3.5f);
         }
 
-        private void OnDrawGizmos() {
+        private void OnDrawGizmosSelected() {
             Gizmos.color = Color.red;
             Gizmos.DrawWireSphere(transform.position, Range);
         }
