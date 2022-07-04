@@ -64,11 +64,11 @@ namespace UnityIntro.Erik.AnimalSandbox
         }
 
 		public virtual void doTick(){
-			doMovement();
 			stateMachine.doTick();
 		}
 
-		public void doMovement(){
+		public void doMovement(AnimalSandbox_TileManager goal){
+			generatePath(goal);
 			StartCoroutine(movementAnimator());
 			currentTile = currentPath[moveDistance];
 		}
@@ -86,5 +86,12 @@ namespace UnityIntro.Erik.AnimalSandbox
 				yield return new WaitForSeconds(AnimalSandbox_GameManager.Instance.AnimationTime / moveDistance);
 			}
 		}
+    }
+
+	public interface IReproduceable
+    {
+        public void doTick();
+        public bool canReproduce();
+        public void doReproduction();
     }
 }

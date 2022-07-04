@@ -69,8 +69,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e169e2f5721ad242b959f9070c33c77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  doManualTick: 0
-  startState: {fileID: 0}
+  doManualTick: 1
+  startState: {fileID: 11400000, guid: de893715e75d30f4fa45b1b7952491e8, type: 2}
   activeState: {fileID: 0}
   navMeshAgent: {fileID: 0}
 --- !u!114 &3908020502547397710
@@ -89,8 +89,9 @@ MonoBehaviour:
   movementCost: 1
   currentTile: {fileID: 0}
   currentPath: []
-  stateMachine: {fileID: 0}
+  stateMachine: {fileID: 3908020502547397708}
   reproductionTurns: 3
+  ReproductionAmount: 5
   turnCount: 0
   RabbitPrefab: {fileID: 0}
 --- !u!1 &3908020503624393353

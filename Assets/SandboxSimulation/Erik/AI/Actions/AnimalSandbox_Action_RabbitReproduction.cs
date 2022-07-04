@@ -6,6 +6,7 @@ using Shizounu.AI;
 
 namespace UnityIntro.Erik.AnimalSandbox
 {
+    [CreateAssetMenu(menuName = "Animal Sandbox/Actions/RabbitReproduction", fileName = "new Rabbit Reproduction")]
     public class AnimalSandbox_Action_RabbitReproduction : Action
     {
         public override void Act(StateMachine stateMachine)
