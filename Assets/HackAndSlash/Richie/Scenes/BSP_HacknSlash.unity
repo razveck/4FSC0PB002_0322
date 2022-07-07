@@ -400,7 +400,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -57.60016, y: 51.300003}
+  m_AnchoredPosition: {x: -53.900208, y: 66.64453}
   m_SizeDelta: {x: 68.0474, y: 20.7349}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &138046275
@@ -2002,7 +2002,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &918488393
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2021,7 +2021,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -57.6, y: 4.655487}
+  m_AnchoredPosition: {x: -53.9, y: 42.3}
   m_SizeDelta: {x: 68.0474, y: 20.7349}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &918488394
@@ -2131,7 +2131,7 @@ GameObject:
   - component: {fileID: 930854165}
   - component: {fileID: 930854164}
   m_Layer: 5
-  m_Name: Reload
+  m_Name: New Game
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2155,8 +2155,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -56.78238, y: 25.899994}
-  m_SizeDelta: {x: 69.6819, y: 20.7349}
+  m_AnchoredPosition: {x: -53.9, y: 18}
+  m_SizeDelta: {x: 68.047, y: 20.7349}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &930854164
 MonoBehaviour:
@@ -2202,9 +2202,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1167339202}
-        m_TargetAssemblyTypeName: ReloadScene, Assembly-CSharp
-        m_MethodName: Reload
+      - m_Target: {fileID: 399986761}
+        m_TargetAssemblyTypeName: Richie.SaveSystem, Assembly-CSharp
+        m_MethodName: New
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2480,7 +2480,6 @@ GameObject:
   - component: {fileID: 1167339206}
   - component: {fileID: 1167339205}
   - component: {fileID: 1167339204}
-  - component: {fileID: 1167339202}
   m_Layer: 0
   m_Name: Game Manager
   m_TagString: Untagged
@@ -2543,18 +2542,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1167339202
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1167339199}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 56d9509dcb19d5143b5fb84e973c3ece, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1167339203
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2712,7 +2699,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Reload
+  m_text: New
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 43225884437a00c468f5c277cde5d6bc, type: 2}
   m_sharedMaterial: {fileID: 5913881458061498354, guid: 43225884437a00c468f5c277cde5d6bc, type: 2}
