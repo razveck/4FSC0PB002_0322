@@ -18,8 +18,16 @@ namespace Richie
             OnSave?.Invoke();
         }
 
+        public void New()
+        {
+            ReloadScene.Reload();
+            loadFromSave = false;
+        }
+
         public void Load()
         {
+            ReloadScene.Reload();
+            loadFromSave = true;
             OnLoad?.Invoke();
         }
 

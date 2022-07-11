@@ -1,9 +1,9 @@
 using UnityEngine.SceneManagement;
 using UnityEngine;
 
-public class ReloadScene : MonoBehaviour
+public static class ReloadScene
 {
-    public void Reload()
+    public static void Reload()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }

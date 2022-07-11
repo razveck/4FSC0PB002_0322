@@ -336,6 +336,54 @@
                     "isPartOfComposite": true
                 }
             ]
+        },
+        {
+            "name": "sim",
+            "id": "9fc7ebf5-dee5-41fb-bfe4-32a85d442b7e",
+            "actions": [
+                {
+                    "name": "leftClick",
+                    "type": "Button",
+                    "id": "53d0c37c-4e23-4ac0-8776-e08a62a0dd52",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "rightClick",
+                    "type": "Button",
+                    "id": "7fed80b5-7b1e-48bf-9439-63fa931386af",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "8d15c7b7-94af-4ad2-be56-530d35a2bcb2",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "leftClick",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c3d86117-9d80-4ff4-8014-e1ce4cc1d3c2",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "rightClick",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": []
