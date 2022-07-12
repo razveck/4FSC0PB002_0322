@@ -4,5 +4,20 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/HackAndSlash/Richie/Scenes/MainMenu.unity
+    guid: 30cc98db883565a4ca054c9fdad4b41c
+  - enabled: 1
+    path: Assets/HackAndSlash/Richie/Scenes/BSP_HacknSlash.unity
+    guid: 5d650a6d64a15ad46964de104b7278f5
+  - enabled: 1
+    path: Assets/HackAndSlash/Richie/Scenes/LoseScreen.unity
+    guid: c6c3dd770a6a51446aaf054e32f63af9
+  - enabled: 1
+    path: Assets/HackAndSlash/Richie/Scenes/OptionsMenu.unity
+    guid: 73625e391e7fe6444a6409aa5b7dac0f
+  - enabled: 1
+    path: Assets/HackAndSlash/Richie/Scenes/WinScreen.unity
+    guid: 6e38a8eeef95fce4597fe90f99269aec
   m_configObjects: {}
