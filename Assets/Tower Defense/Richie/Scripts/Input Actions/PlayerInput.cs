@@ -268,6 +268,146 @@ namespace Richie
                     ""isPartOfComposite"": true
                 }
             ]
+        },
+        {
+            ""name"": ""hackSlash"",
+            ""id"": ""a79cf288-42dd-4429-9def-1889914b6c30"",
+            ""actions"": [
+                {
+                    ""name"": ""movement"",
+                    ""type"": ""Value"",
+                    ""id"": ""5a65cf9d-69d7-4726-aae1-d643ef0f81d7"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""attack"",
+                    ""type"": ""Button"",
+                    ""id"": ""018d466e-48ca-4e51-b8a0-e3722bf0accd"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""098f2181-aac3-44dc-bc98-d72893280b70"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""attack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""WASD"",
+                    ""id"": ""874715a6-a324-42e2-8c78-373629c06d47"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""movement"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""8e45c6d0-d03a-4fbb-9f34-b7eaebaa329f"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""c5ba16e2-5d39-4a0d-9276-b9c60086d393"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""a63683a8-82d2-45ae-99d9-48d4840a161c"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""a83ec714-fa0c-414c-bc1e-de27a29b64f8"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                }
+            ]
+        },
+        {
+            ""name"": ""sim"",
+            ""id"": ""9fc7ebf5-dee5-41fb-bfe4-32a85d442b7e"",
+            ""actions"": [
+                {
+                    ""name"": ""leftClick"",
+                    ""type"": ""Button"",
+                    ""id"": ""53d0c37c-4e23-4ac0-8776-e08a62a0dd52"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""rightClick"",
+                    ""type"": ""Button"",
+                    ""id"": ""7fed80b5-7b1e-48bf-9439-63fa931386af"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""8d15c7b7-94af-4ad2-be56-530d35a2bcb2"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""leftClick"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c3d86117-9d80-4ff4-8014-e1ce4cc1d3c2"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""rightClick"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -283,6 +423,14 @@ namespace Richie
             // player
             m_player = asset.FindActionMap("player", throwIfNotFound: true);
             m_player_movement = m_player.FindAction("movement", throwIfNotFound: true);
+            // hackSlash
+            m_hackSlash = asset.FindActionMap("hackSlash", throwIfNotFound: true);
+            m_hackSlash_movement = m_hackSlash.FindAction("movement", throwIfNotFound: true);
+            m_hackSlash_attack = m_hackSlash.FindAction("attack", throwIfNotFound: true);
+            // sim
+            m_sim = asset.FindActionMap("sim", throwIfNotFound: true);
+            m_sim_leftClick = m_sim.FindAction("leftClick", throwIfNotFound: true);
+            m_sim_rightClick = m_sim.FindAction("rightClick", throwIfNotFound: true);
         }
 
         public void Dispose()
@@ -444,6 +592,88 @@ namespace Richie
             }
         }
         public PlayerActions @player => new PlayerActions(this);
+
+        // hackSlash
+        private readonly InputActionMap m_hackSlash;
+        private IHackSlashActions m_HackSlashActionsCallbackInterface;
+        private readonly InputAction m_hackSlash_movement;
+        private readonly InputAction m_hackSlash_attack;
+        public struct HackSlashActions
+        {
+            private @PlayerInput m_Wrapper;
+            public HackSlashActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
+            public InputAction @movement => m_Wrapper.m_hackSlash_movement;
+            public InputAction @attack => m_Wrapper.m_hackSlash_attack;
+            public InputActionMap Get() { return m_Wrapper.m_hackSlash; }
+            public void Enable() { Get().Enable(); }
+            public void Disable() { Get().Disable(); }
+            public bool enabled => Get().enabled;
+            public static implicit operator InputActionMap(HackSlashActions set) { return set.Get(); }
+            public void SetCallbacks(IHackSlashActions instance)
+            {
+                if (m_Wrapper.m_HackSlashActionsCallbackInterface != null)
+                {
+                    @movement.started -= m_Wrapper.m_HackSlashActionsCallbackInterface.OnMovement;
+                    @movement.performed -= m_Wrapper.m_HackSlashActionsCallbackInterface.OnMovement;
+                    @movement.canceled -= m_Wrapper.m_HackSlashActionsCallbackInterface.OnMovement;
+                    @attack.started -= m_Wrapper.m_HackSlashActionsCallbackInterface.OnAttack;
+                    @attack.performed -= m_Wrapper.m_HackSlashActionsCallbackInterface.OnAttack;
+                    @attack.canceled -= m_Wrapper.m_HackSlashActionsCallbackInterface.OnAttack;
+                }
+                m_Wrapper.m_HackSlashActionsCallbackInterface = instance;
+                if (instance != null)
+                {
+                    @movement.started += instance.OnMovement;
+                    @movement.performed += instance.OnMovement;
+                    @movement.canceled += instance.OnMovement;
+                    @attack.started += instance.OnAttack;
+                    @attack.performed += instance.OnAttack;
+                    @attack.canceled += instance.OnAttack;
+                }
+            }
+        }
+        public HackSlashActions @hackSlash => new HackSlashActions(this);
+
+        // sim
+        private readonly InputActionMap m_sim;
+        private ISimActions m_SimActionsCallbackInterface;
+        private readonly InputAction m_sim_leftClick;
+        private readonly InputAction m_sim_rightClick;
+        public struct SimActions
+        {
+            private @PlayerInput m_Wrapper;
+            public SimActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
+            public InputAction @leftClick => m_Wrapper.m_sim_leftClick;
+            public InputAction @rightClick => m_Wrapper.m_sim_rightClick;
+            public InputActionMap Get() { return m_Wrapper.m_sim; }
+            public void Enable() { Get().Enable(); }
+            public void Disable() { Get().Disable(); }
+            public bool enabled => Get().enabled;
+            public static implicit operator InputActionMap(SimActions set) { return set.Get(); }
+            public void SetCallbacks(ISimActions instance)
+            {
+                if (m_Wrapper.m_SimActionsCallbackInterface != null)
+                {
+                    @leftClick.started -= m_Wrapper.m_SimActionsCallbackInterface.OnLeftClick;
+                    @leftClick.performed -= m_Wrapper.m_SimActionsCallbackInterface.OnLeftClick;
+                    @leftClick.canceled -= m_Wrapper.m_SimActionsCallbackInterface.OnLeftClick;
+                    @rightClick.started -= m_Wrapper.m_SimActionsCallbackInterface.OnRightClick;
+                    @rightClick.performed -= m_Wrapper.m_SimActionsCallbackInterface.OnRightClick;
+                    @rightClick.canceled -= m_Wrapper.m_SimActionsCallbackInterface.OnRightClick;
+                }
+                m_Wrapper.m_SimActionsCallbackInterface = instance;
+                if (instance != null)
+                {
+                    @leftClick.started += instance.OnLeftClick;
+                    @leftClick.performed += instance.OnLeftClick;
+                    @leftClick.canceled += instance.OnLeftClick;
+                    @rightClick.started += instance.OnRightClick;
+                    @rightClick.performed += instance.OnRightClick;
+                    @rightClick.canceled += instance.OnRightClick;
+                }
+            }
+        }
+        public SimActions @sim => new SimActions(this);
         public interface IDefenceActions
         {
             void OnLeft(InputAction.CallbackContext context);
@@ -456,6 +686,16 @@ namespace Richie
         public interface IPlayerActions
         {
             void OnMovement(InputAction.CallbackContext context);
+        }
+        public interface IHackSlashActions
+        {
+            void OnMovement(InputAction.CallbackContext context);
+            void OnAttack(InputAction.CallbackContext context);
+        }
+        public interface ISimActions
+        {
+            void OnLeftClick(InputAction.CallbackContext context);
+            void OnRightClick(InputAction.CallbackContext context);
         }
     }
 }
