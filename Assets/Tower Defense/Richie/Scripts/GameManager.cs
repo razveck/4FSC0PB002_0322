@@ -12,7 +12,7 @@ namespace Richie.TowerDefence
         [SerializeField] private int _maxRounds = 10;
         [SerializeField] private int _maxLives = 3;
         private int _currentLives, _currentRound = 1;
-        internal int _currentMoney, _sellAmount;
+        internal int currentMoney, sellAmount;
         internal bool refund;
 
         [Header("Text References")]
@@ -38,8 +38,8 @@ namespace Richie.TowerDefence
         private void OnValidate()
         {
             _currentLives = _maxLives;
-            _currentMoney = _moneyOnStart;
-            _wallet.text = $"${_currentMoney}";
+            currentMoney = _moneyOnStart;
+            _wallet.text = $"${currentMoney}";
         }
 
         private void Awake()
@@ -67,12 +67,12 @@ namespace Richie.TowerDefence
 
         public void Update()
         {
-            _wallet.text = $"${_currentMoney}";
+            _wallet.text = $"${currentMoney}";
         }
 
         private void Interactions_OnSellTower()
         {
-            _currentMoney += _sellAmount;
+            currentMoney += sellAmount;
             _showRefund.SetActive(false);
         }
 
@@ -86,7 +86,7 @@ namespace Richie.TowerDefence
 
         private void EnemyManager_OnEnemyDeath()
         { 
-            _currentMoney += _rewardOnKill;
+            currentMoney += _rewardOnKill;
             if (_currentLives <= 0)
             {
                 _loseScreen.SetActive(true);
@@ -97,7 +97,7 @@ namespace Richie.TowerDefence
         private void EnemyManager_OnEnemyExit()
         {
             _currentLives--;
-            _currentMoney -= _rewardOnKill;
+            currentMoney -= _rewardOnKill;
             _lives.text = $"{_currentLives}";
         }
 
@@ -136,6 +136,10 @@ namespace Richie.TowerDefence
             DisableHover = false;
             Time.timeScale = 1f;
         }
+
+        public void DisableTileInteract() => DisableHover = true;
+
+        public void EnableTileInteract() => DisableHover = false;
 
         public void ReloadScene() => SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 

@@ -49,7 +49,7 @@ namespace Richie.TowerDefence
         {
             if (_tileMap.WorldTiles[tile.Coordinates].IsPathTile == false && tile.IsValid)
             {
-                if (_placeTower.Selected != null && _placeTower.Selected.GetComponent<TowerBase>().Cost <= _gameManager._currentMoney)
+                if (_placeTower.Selected != null && _placeTower.Selected.GetComponent<TowerBase>().Cost <= _gameManager.currentMoney)
                 {
                     tile.SetValid(false);
                     GameObject tower = _placeTower.PlantTower(tile.transform);
@@ -72,7 +72,7 @@ namespace Richie.TowerDefence
                     tile.SetValid(true);
                     tile.SetTower(null);
 
-                    _gameManager._sellAmount = refund;
+                    _gameManager.sellAmount = refund;
                     _gameManager.refund = false;
                     OnSellTower?.Invoke();
 

@@ -17,7 +17,7 @@ namespace Richie.TowerDefence
         private Renderer _renderer;
         private Material _defaultMat;
 
-        bool test, temp;
+        private bool test;
 
         private void Start()
         {

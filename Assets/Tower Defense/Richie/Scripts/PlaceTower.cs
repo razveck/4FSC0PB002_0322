@@ -24,7 +24,7 @@ namespace Richie.TowerDefence
             Vector3 tilePosition = new(tile.position.x, tile.position.y + _yOffset, tile.position.z);
 
             GameObject tower = Instantiate(Selected, tilePosition, Quaternion.identity, tile);
-            _gameManager._currentMoney -= tower.GetComponent<TowerBase>().Cost;
+            _gameManager.currentMoney -= tower.GetComponent<TowerBase>().Cost;
             tile.GetComponent<TileInfo>().SetTower(tower);
 
             Selected = null;

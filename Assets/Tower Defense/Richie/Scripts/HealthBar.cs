@@ -8,19 +8,19 @@ namespace Richie.TowerDefence
         [SerializeField] private Slider slider;
         [SerializeField] private GameObject _canvas;
 
+        private HealthBase _health;
+
         private void Start()
         {
-            HealthBase health = GetComponentInParent<EnemyHealth>();
-            health.OnHealthBar += Health_OnHealthBar;
+            
+            _health = GetComponentInParent<EnemyHealth>();
+            _health.OnHealthBar += Health_OnHealthBar;
 
-            MaxHealth(health.health);
+            MaxHealth(_health.health);
             _canvas.SetActive(false);
         }
 
-        private void Health_OnHealthBar(float currentHealth)
-        {
-            SetHealth(currentHealth);
-        }
+        private void Health_OnHealthBar(float currentHealth) => SetHealth(currentHealth);
 
         public void MaxHealth(float health)
         {
@@ -34,5 +34,6 @@ namespace Richie.TowerDefence
             if (slider.value < slider.maxValue)
                 _canvas.SetActive(true);
         }
+        private void OnDestroy() => _health.OnHealthBar -= Health_OnHealthBar;
     }
 }
