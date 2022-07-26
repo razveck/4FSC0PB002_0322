@@ -130,6 +130,13 @@ namespace Richie.TowerDefence
             }
         }
 
+        public void DefaultSettings()
+        {
+            IsPaused = false;
+            DisableHover = false;
+            Time.timeScale = 1f;
+        }
+
         public void ReloadScene() => SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 
         private void OnEnable() =>_input.Enable();

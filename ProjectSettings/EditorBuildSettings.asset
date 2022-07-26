@@ -18,7 +18,7 @@ EditorBuildSettings:
     path: Assets/Tower Defense/Richie/Scenes/Main_Menu/Transition.unity
     guid: 0108419996c2f5441be9f1298373368b
   - enabled: 1
-    path: Assets/Tower Defense/Richie/Scenes/Modes/Endless_Classic.unity
+    path: Assets/Tower Defense/Richie/Scenes/Modes/Story_.unity
     guid: e374d567c433b124ea4c63637c88a82e
   - enabled: 1
     path: Assets/Tower Defense/Richie/Scenes/Modes/Endless_Open.unity
