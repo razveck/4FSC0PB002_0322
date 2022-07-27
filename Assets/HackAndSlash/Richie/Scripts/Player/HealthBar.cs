@@ -6,23 +6,26 @@ namespace Richie
     public class HealthBar : MonoBehaviour
     {
         [SerializeField] private Slider _slider;
-        [SerializeField] private Spawner _spawner;
-
-        private void Awake()
-        {
-            gameObject.SetActive(false);
-        }
+        public HealthBase Health;
 
         private void Start()
         {
-            PlayerHealth health = _spawner.currentPlayer.GetComponentInChildren<PlayerHealth>();
-            health.OnHit += Health_OnHit;
-
-            MaxHealth(health.GetMaxHealth());
-            SetHealth(health.GetHealth());
+            if(Health is not null)
+                Initialize();
         }
 
-        private void Health_OnHit(int health)
+        public void Initialize(){
+            Health.OnHit += Health_OnHit;
+
+            MaxHealth(Health.GetMaxHealth());
+            SetHealth(Health.GetHealth());
+        }
+
+		private void OnDestroy() {
+            Health.OnHit -= Health_OnHit;
+		}
+
+		private void Health_OnHit(int health)
         {
             SetHealth(health);
         }

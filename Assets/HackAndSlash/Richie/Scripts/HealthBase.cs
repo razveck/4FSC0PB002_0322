@@ -20,7 +20,11 @@ namespace Richie
         public int GetHealth() => _currentHealth;
         public int GetMaxHealth() => _maxHealth;
 
-        private void Start()
+		private void Awake() {
+            _currentHealth = _maxHealth;
+		}
+
+		private void Start()
         {
             if (TryGetComponent<LootTable>(out _))
             {
@@ -29,7 +33,6 @@ namespace Richie
             else lootTable = null;
 
             if (SaveSystem.loadFromSave) return;
-            _currentHealth = _maxHealth;
         }
 
         public void TakeDamage(int damage)

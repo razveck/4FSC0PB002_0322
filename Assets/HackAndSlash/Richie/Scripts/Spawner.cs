@@ -20,7 +20,7 @@ namespace Richie
         [SerializeField] private GameObject _enemies;
         [SerializeField] private int _maxEnemies = 10;
         [SerializeField] private Transform _itemContainer;
-        [SerializeField] private GameObject _playerHealthbar;
+        [SerializeField] private HealthBar _playerHealthbar;
 
         private void Start()
         {
@@ -46,7 +46,8 @@ namespace Richie
                 SpawnEnemies();
             }
 
-            _playerHealthbar.SetActive(true);
+            _playerHealthbar.Health = currentPlayer.GetComponentInChildren<HealthBase>();
+            _playerHealthbar.Initialize();
         }
 
         private void PlayerStorage_OnSave()
