@@ -8,7 +8,23 @@ namespace Richie
         internal Transform container;
         internal PlayerBag playerBag;
 
-        protected override void OnDeath()
+
+		[SerializeField]
+		private ParticleSystem _hitParticles = default;
+
+		protected override void Start() {
+			OnHit += EnemyHealth_OnHit;
+			base.Start();
+		}
+
+		private void EnemyHealth_OnHit(int value) {
+			_hitParticles.Play();
+            var shape = _hitParticles.shape;
+            shape.shapeType = ParticleSystemShapeType.Box;
+            
+		}
+
+		protected override void OnDeath()
         {
             GiveLoot();
             base.OnDeath();

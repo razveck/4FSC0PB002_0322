@@ -10,6 +10,7 @@ namespace Richie
 
         private void OnCollisionStay2D(Collision2D other)
         {
+            
             if (other.transform.TryGetComponent<PlayerHealth>(out _))
             {
                 if (Time.time >= _nextAttackTime)

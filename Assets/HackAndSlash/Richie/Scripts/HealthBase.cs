@@ -24,7 +24,7 @@ namespace Richie
             _currentHealth = _maxHealth;
 		}
 
-		private void Start()
+		protected virtual void Start()
         {
             if (TryGetComponent<LootTable>(out _))
             {
