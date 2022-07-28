@@ -143,8 +143,8 @@ namespace Richie.TowerDefence
 
         public void ReloadScene() => SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 
-        private void OnEnable() =>_input.Enable();
+        private void OnEnable() => _input.Enable();
 
-        private void OnDisable() =>_input.Disable();
+        private void OnDisable() => _input.Disable();
     }
 }

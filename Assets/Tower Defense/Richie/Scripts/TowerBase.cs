@@ -25,6 +25,9 @@ namespace Richie.TowerDefence
         private bool findTarget = true;
         private float nextTimeToFire = 0f;
 
+        [Header("Tower Settings")]
+        public float _turnModifier = 0.3f;
+
         private void Awake()
         {
             _tileMap = FindObjectOfType<TileMap>();
@@ -43,6 +46,18 @@ namespace Richie.TowerDefence
             RemoveTarget();
         }
 
+        private void Rotate()
+        {
+           
+            if (target is null) return;
+
+           Vector3 direction = target.transform.position - transform.position;
+           float angle = Mathf.Atan2(direction.z, direction.x) * Mathf.Rad2Deg;
+
+            Quaternion rotation = Quaternion.Euler(new Vector3(0f, angle, 0f));
+            transform.rotation = rotation;
+        }
+
         private void Attack()
         {
             if (findTarget) return;
@@ -59,11 +74,13 @@ namespace Richie.TowerDefence
                 nextTimeToFire = Time.time + 1 / (FireRate / 10);
                 target.GetComponent<EnemyHealth>().TakeDamage(Damage);
             }
+
+            Rotate();
         }
 
         private void FindTarget()
         {
-            if (!findTarget || target != null) return;
+            if (!findTarget || target is not null) return;
 
             foreach (var item in _tilesInRange)
             {
@@ -95,9 +112,7 @@ namespace Richie.TowerDefence
             for (int x = (int)startPos.x; x <= endPos.x; x++)
             {
                 for (int y = (int)startPos.y; y <= endPos.y; y++)
-                {
                     _neighbors.Add(new Vector2(x, y));
-                }
             }
         }
 
@@ -106,9 +121,8 @@ namespace Richie.TowerDefence
             for (int i = 0; i < _neighbors.Count; i++)
             {
                 if (_tileMap.WorldTiles.ContainsKey(_neighbors[i]) && _tileMap.WorldTiles[_neighbors[i]].IsPathTile == true)
-                {
                     _tilesInRange.Add(_tileMap.WorldTiles[_neighbors[i]]);
-                }
+
             }
         }
     }
