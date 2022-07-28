@@ -54,7 +54,7 @@ namespace Richie.TowerDefence
            Vector3 direction = target.transform.position - transform.position;
            float angle = Mathf.Atan2(direction.z, direction.x) * Mathf.Rad2Deg;
 
-            Quaternion rotation = Quaternion.Euler(new Vector3(0f, angle, 0f));
+            Quaternion rotation = Quaternion.Euler(new Vector3(0f, -angle, 0f));
             transform.rotation = rotation;
         }
 
